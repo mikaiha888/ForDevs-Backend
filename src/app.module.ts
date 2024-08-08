@@ -3,7 +3,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user/entities/user.entity';
 import { UserService } from './user/user.service';
 import { UserController } from './user/user.controller';
+import { ContractModule } from './contract/contract.module';
 import * as dotenv from 'dotenv';
+import { Contract } from './contract/entities/contract.entity';
+import { Commission } from './commission/entities/commission.entity';
+import { LikeModule } from './like/like.module';
+import { Like } from './like/entities/like.entity';
 
 dotenv.config();
 
@@ -16,10 +21,12 @@ dotenv.config();
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [User],
+      entities: [User, Contract, Commission, Like ],
       synchronize: true,
     }),
     TypeOrmModule.forFeature([User]),
+    ContractModule,
+    LikeModule,
   ],
   controllers: [UserController],
   providers: [UserService],
