@@ -1,0 +1,33 @@
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
+} from 'typeorm';
+import { v4 as uuidv4 } from 'uuid';
+
+@Entity('projects')
+export class Project {
+  @PrimaryGeneratedColumn('uuid')
+  id: string = uuidv4();
+
+  @Column({ type: 'varchar', length: 100 })
+  title: string;
+
+  @Column({ type: 'varchar', default: '' })
+  description: string;
+
+  @Column({ type: 'varchar', length: 512, default: 'image_notfound.jpg' })
+  image: string;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deletedAt: Date;
+}
