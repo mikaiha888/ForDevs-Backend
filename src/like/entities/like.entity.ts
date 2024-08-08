@@ -1,14 +1,18 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { User } from '../../user/entities/user.entity'; 
+import { Project } from '../../project/entities/project.entity'; 
 
 @Entity()
 export class Like {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ type: 'uuid' })
-  userId: string;
+  @ManyToOne(() => User, { nullable: false })
+  @JoinColumn({ name: 'userId' })
+  user: User;
 
-  @Column({ type: 'uuid' })
-  projectId: string;
+  @ManyToOne(() => Project, { nullable: false })
+  @JoinColumn({ name: 'projectId' })
+  project: Project;
 
 }
