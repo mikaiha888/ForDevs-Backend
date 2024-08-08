@@ -9,6 +9,8 @@ import { Contract } from './contract/entities/contract.entity';
 import { Commission } from './commission/entities/commission.entity';
 import { LikeModule } from './like/like.module';
 import { Like } from './like/entities/like.entity';
+import { ProjectModule } from './project/project.module';
+import { ReviewModule } from './review/review.module';
 
 dotenv.config();
 
@@ -27,6 +29,8 @@ dotenv.config();
     TypeOrmModule.forFeature([User]),
     ContractModule,
     LikeModule,
+    ProjectModule,
+    ReviewModule,
   ],
   controllers: [UserController],
   providers: [UserService],
