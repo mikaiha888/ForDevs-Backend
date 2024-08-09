@@ -1,3 +1,4 @@
+import { User } from 'src/user/entities/user.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -5,6 +6,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  ManyToOne,
 } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -30,4 +32,9 @@ export class Project {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  //Relation @ManyToOne()
+
+  @ManyToOne(() => User, (user) => user.projects)
+  user: User
 }

@@ -12,6 +12,7 @@ import { Like } from './like/entities/like.entity';
 import { ProjectModule } from './project/project.module';
 import { ReviewModule } from './review/review.module';
 import { Project } from './project/entities/project.entity';
+import { Review } from './review/entities/review.entity';
 
 dotenv.config();
 
@@ -24,7 +25,7 @@ dotenv.config();
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [User, Contract, Commission, Like, Project ],
+      entities: [User, Contract, Commission, Like, Project, Review ],
       synchronize: true,
     }),
     TypeOrmModule.forFeature([User]),
