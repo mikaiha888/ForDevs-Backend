@@ -1,3 +1,5 @@
+import { Tag } from 'src/tag/entities/tag.entity';
+import { Technology } from 'src/technology/entities/technology.entity';
 import { User } from 'src/user/entities/user.entity';
 import {
   Entity,
@@ -7,6 +9,7 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
   ManyToOne,
+  ManyToMany,
 } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -33,8 +36,12 @@ export class Project {
   @DeleteDateColumn()
   deletedAt: Date;
 
-  //Relation @ManyToOne()
-
   @ManyToOne(() => User, (user) => user.projects)
-  user: User
+  user: User;
+
+  @ManyToMany(() => Tag, (tag) => tag.projects)
+  tags: Tag[];
+
+  @ManyToMany(() => Technology, (technology) => technology.projects)
+  technologies: Technology[];
 }

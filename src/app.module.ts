@@ -1,18 +1,15 @@
+import * as dotenv from 'dotenv';
+import { join } from 'path';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './user/entities/user.entity';
-import { UserService } from './user/user.service';
-import { UserController } from './user/user.controller';
-import { ContractModule } from './contract/contract.module';
-import * as dotenv from 'dotenv';
-import { Contract } from './contract/entities/contract.entity';
-import { Commission } from './commission/entities/commission.entity';
+
+import { UserModule } from './user/user.module';
 import { LikeModule } from './like/like.module';
-import { Like } from './like/entities/like.entity';
-import { ProjectModule } from './project/project.module';
 import { ReviewModule } from './review/review.module';
-import { Project } from './project/entities/project.entity';
-import { Review } from './review/entities/review.entity';
+import { ProjectModule } from './project/project.module';
+import { ContractModule } from './contract/contract.module';
+import { TechnologyModule } from './technology/technology.module';
+import { TagModule } from './tag/tag.module';
 
 dotenv.config();
 
@@ -20,21 +17,21 @@ dotenv.config();
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
+      host: process.env.DB_HOST,
+      port: +process.env.DB_PORT,
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [User, Contract, Commission, Like, Project, Review ],
-      synchronize: true,
+      entities: [join(__dirname, '**', '*.entity.{ts,js}')],
+      synchronize: process.env.NODE_ENV === 'development',
     }),
-    TypeOrmModule.forFeature([User]),
-    ContractModule,
+    UserModule,
     LikeModule,
-    ProjectModule,
     ReviewModule,
+    ProjectModule,
+    ContractModule,
+    TechnologyModule,
+    TagModule,
   ],
-  controllers: [UserController],
-  providers: [UserService],
 })
 export class AppModule {}
