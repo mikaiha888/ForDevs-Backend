@@ -9,6 +9,7 @@ import { ProjectModule } from './project/project.module';
 import { ContractModule } from './contract/contract.module';
 import { TechnologyModule } from './technology/technology.module';
 import { TagModule } from './tag/tag.module';
+import { CommissionModule } from './commission/commission.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { TagModule } from './tag/tag.module';
     ContractModule,
     TechnologyModule,
     TagModule,
+    CommissionModule,
   ],
 })
 export class AppModule {}
