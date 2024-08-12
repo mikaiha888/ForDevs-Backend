@@ -19,16 +19,16 @@ export class LikeController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.likeService.findOne(+id);
+    return this.likeService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateLikeDto: UpdateLikeDto) {
-    return this.likeService.update(+id, updateLikeDto);
+    return this.likeService.update(id, updateLikeDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.likeService.remove(+id);
+    return this.likeService.remove(id);
   }
 }
