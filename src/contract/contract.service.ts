@@ -1,26 +1,47 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Contract } from './entities/contract.entity';
 import { CreateContractDto } from './dto/create-contract.dto';
 import { UpdateContractDto } from './dto/update-contract.dto';
 
 @Injectable()
 export class ContractService {
-  create(createContractDto: CreateContractDto) {
-    return 'This action adds a new contract';
+  constructor(
+    @InjectRepository(Contract)
+    private readonly contractRepository: Repository<Contract>,
+  ) {}
+
+  async create(createContractDto: CreateContractDto): Promise<Contract> {
+    const contract = this.contractRepository.create(createContractDto);
+    return this.contractRepository.save(contract);
   }
 
-  findAll() {
-    return `This action returns all contract`;
+  async findAll(): Promise<Contract[]> {
+    return this.contractRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} contract`;
+  async findOne(id: string): Promise<Contract> {
+    const contract = await this.contractRepository.findOne({ where: { id } });
+    if (!contract) {
+      throw new NotFoundException(`Contract with id ${id} not found`);
+    }
+    return contract;
   }
 
-  update(id: number, updateContractDto: UpdateContractDto) {
-    return `This action updates a #${id} contract`;
+  async update(id: string, updateContractDto: UpdateContractDto): Promise<Contract> {
+    const contract = await this.contractRepository.preload({
+      id: id,
+      ...updateContractDto,
+    });
+    if (!contract) {
+      throw new NotFoundException(`Contract with id ${id} not found`);
+    }
+    return this.contractRepository.save(contract);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} contract`;
+  async remove(id: string): Promise<void> {
+    const contract = await this.findOne(id);
+    await this.contractRepository.remove(contract);
   }
 }
