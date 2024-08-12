@@ -1,4 +1,4 @@
-import { IsEmail, IsOptional, IsUrl, Length } from 'class-validator';
+import { IsEmail, IsUrl, Length } from 'class-validator';
 import { Project } from 'src/project/entities/project.entity';
 import { Review } from 'src/review/entities/review.entity';
 import {
@@ -13,8 +13,8 @@ import {
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
   @Column({ nullable: false })
   @Length(1, 30, { message: 'First name must be between 1 and 30 characters' })
@@ -32,17 +32,17 @@ export class User {
   @Length(6, 30, { message: 'Password must be between 6 and 30 characters' })
   password: string;
 
-  @Column({ nullable: true, length: 300, default: '' })
+  @Column({ nullable: true, length: 300 })
   bio: string;
 
-  @Column({ nullable: true, length: 5000, default: '' })
+  @Column({ nullable: true, length: 5000 })
   aboutMe: string;
 
-  @Column({ nullable: true, default: '' })
+  @Column({ nullable: true })
   @IsUrl({}, { message: 'Image must be a valid URL' })
   image: string;
 
-  @Column({ nullable: true, default: '' })
+  @Column({ nullable: true })
   @IsUrl({}, { message: 'Cover image must be a valid URL' })
   coverImage: string;
 

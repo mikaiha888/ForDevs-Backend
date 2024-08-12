@@ -2,6 +2,7 @@ import * as dotenv from 'dotenv';
 import { join } from 'path';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { DatabaseService } from './app.service';
 
 import { UserModule } from './user/user.module';
 import { LikeModule } from './like/like.module';
@@ -22,8 +23,9 @@ dotenv.config();
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
+      migrations: [join(__dirname, 'src/migrations/*.ts')],
       entities: [join(__dirname, '**', '*.entity.{ts,js}')],
-      synchronize: process.env.NODE_ENV === 'development',
+      synchronize: false,
     }),
     UserModule,
     LikeModule,
@@ -33,5 +35,6 @@ dotenv.config();
     TechnologyModule,
     TagModule,
   ],
+  providers: [DatabaseService]
 })
 export class AppModule {}
