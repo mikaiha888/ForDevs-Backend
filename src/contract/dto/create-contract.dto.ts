@@ -1,4 +1,4 @@
-import { IsUUID, IsString, IsNumber, IsEnum, IsOptional } from 'class-validator';
+import { IsUUID, IsString, IsNumber, IsEnum } from 'class-validator';
 
 export class CreateContractDto {
   @IsUUID()
