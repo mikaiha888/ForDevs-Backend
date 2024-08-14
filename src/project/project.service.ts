@@ -7,10 +7,13 @@ import { Project } from './entities/project.entity';
 
 @Injectable()
 export class ProjectService {
-  constructor(@InjectRepository(Project) private projectRepository: Repository<Project>) {}
+  constructor(
+    @InjectRepository(Project)
+    private readonly projectRepository: Repository<Project>,
+  ) {}
 
   async create(createProjectDto: CreateProjectDto): Promise<Project> {
-    const project = this.projectRepository.create(createProjectDto)
+    const project = this.projectRepository.create(createProjectDto);
     return this.projectRepository.save(project);
   }
 
@@ -22,12 +25,15 @@ export class ProjectService {
     return this.projectRepository.findOneBy({ id });
   }
 
-  async update(id: string, updateProjectDto: UpdateProjectDto): Promise<Project> {
-    await this.projectRepository.update(id, updateProjectDto)
+  async update(
+    id: string,
+    updateProjectDto: UpdateProjectDto,
+  ): Promise<Project> {
+    await this.projectRepository.update(id, updateProjectDto);
     return this.projectRepository.findOneBy({ id });
   }
 
   async remove(id: string): Promise<void> {
-    await this.projectRepository.delete(id)
+    await this.projectRepository.delete(id);
   }
 }

@@ -14,13 +14,13 @@ import { CommissionModule } from './commission/commission.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot(dataSourceOptions),
+    TagModule,
     UserModule,
     LikeModule,
     ReviewModule,
     ProjectModule,
     ContractModule,
     TechnologyModule,
-    TagModule,
     CommissionModule,
   ],
 })

@@ -1,4 +1,3 @@
-import { IsEmail, IsUrl, Length } from 'class-validator';
 import { Project } from 'src/project/entities/project.entity';
 import { Review } from 'src/review/entities/review.entity';
 import {
