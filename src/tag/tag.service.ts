@@ -1,26 +1,54 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateTagDto } from './dto/create-tag.dto';
 import { UpdateTagDto } from './dto/update-tag.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Tag } from './entities/tag.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class TagService {
-  create(createTagDto: CreateTagDto) {
-    return 'This action adds a new tag';
+  constructor(@InjectRepository(Tag) private tagsRepository: Repository<Tag>) {}
+
+  async create(createTagDto: CreateTagDto): Promise<Tag> {
+    const existingTag = await this.tagsRepository.findOne({
+      where: { name: createTagDto.name },
+    });
+    if (existingTag) {
+      throw new BadRequestException('Tag already exists.');
+    }
+
+    const tags = this.tagsRepository.create(createTagDto);
+    return this.tagsRepository.save(tags);
   }
 
-  findAll() {
-    return `This action returns all tag`;
+  async findAll(): Promise<Tag[]> {
+    return this.tagsRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} tag`;
+  async findOne(id: string): Promise<Tag> {
+    const tag = await this.tagsRepository.findOne({ where: { id } });
+    if (!tag) {
+      throw new NotFoundException(`Tag with id ${id} not found`);
+    }
+    return tag;
   }
 
-  update(id: number, updateTagDto: UpdateTagDto) {
-    return `This action updates a #${id} tag`;
+  async update(id: string, updateTagDto: UpdateTagDto): Promise<Tag> {
+    const tag = await this.tagsRepository.preload({
+      id: id,
+      ...updateTagDto,
+    });
+    if (!tag) {
+      throw new NotFoundException(`Tag with id ${id} not found`);
+    }
+    return this.tagsRepository.save(tag);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} tag`;
+  async remove(id: string): Promise<void> {
+    const tag = await this.findOne(id);
+    if (!tag) {
+      throw new NotFoundException(`Tag with id ${id} not found`);
+    }
+    await this.tagsRepository.remove(tag);
   }
 }
