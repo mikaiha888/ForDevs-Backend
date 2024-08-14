@@ -19,16 +19,16 @@ export class TechnologyController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.technologyService.findOne(+id);
+    return this.technologyService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateTechnologyDto: UpdateTechnologyDto) {
-    return this.technologyService.update(+id, updateTechnologyDto);
+    return this.technologyService.update(id, updateTechnologyDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.technologyService.remove(+id);
+    return this.technologyService.remove(id);
   }
 }

@@ -1,7 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, Unique } from 'typeorm';
 import { User } from 'src/user/entities/user.entity';
 
 @Entity()
+@Unique(["reviewer", "reviewedUser"])
 export class Review {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -13,9 +14,11 @@ export class Review {
   comment: string;
 
   @ManyToOne(() => User, (user) => user.reviews)
+  @JoinColumn({ name: 'reviewer_id' })
   reviewer: User;
 
   @ManyToOne(() => User, (user) => user.reviews)
+  @JoinColumn({ name: 'reviewed_user_id' })
   reviewedUser: User;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
@@ -27,4 +30,5 @@ export class Review {
     onUpdate: 'CURRENT_TIMESTAMP',
   })
   updatedAt: Date;
+
 }

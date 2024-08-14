@@ -6,7 +6,7 @@ export class Tag {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @Column({ nullable: false, length: 30 })
+    @Column({ nullable: false })
     name: string
 
     @ManyToMany(() => Project, (project) => project.tags)
