@@ -1,3 +1,4 @@
+import { Link } from 'src/link/entities/link.entity';
 import { Project } from 'src/project/entities/project.entity';
 import { Review } from 'src/review/entities/review.entity';
 import {
@@ -12,7 +13,7 @@ import {
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({ nullable: false })
@@ -53,4 +54,7 @@ export class User {
 
   @OneToMany(() => Review, (review) => review.reviewer)
   reviews: Review[];
+
+  @OneToMany(() => Link, (link) => link.user)
+  links: Link[];
 }
