@@ -1,6 +1,6 @@
-import { Link } from 'src/link/entities/link.entity';
-import { Project } from 'src/project/entities/project.entity';
-import { Review } from 'src/review/entities/review.entity';
+import { Link } from 'src/modules/link/entities/link.entity';
+import { Project } from 'src/modules/project/entities/project.entity';
+import { Review } from 'src/modules/review/entities/review.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
