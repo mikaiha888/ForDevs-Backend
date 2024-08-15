@@ -12,6 +12,7 @@ import { TagModule } from './modules/tag/tag.module';
 import { CommissionModule } from './modules/commission/commission.module';
 import { LinkModule } from './modules/link/link.module';
 import { PlanModule } from './modules/plan/plan.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { PlanModule } from './modules/plan/plan.module';
     CommissionModule,
     LinkModule,
     PlanModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
