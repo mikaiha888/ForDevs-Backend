@@ -5,10 +5,9 @@ import dataSource from '../../../ormconfig';
 
 export default class CreatePlans implements Seeder {
   public async run(factory: Factory, connection: DataSource): Promise<void> {
-    const ormconfig = new DataSource(dataSource);
-    await ormconfig.initialize();
+    await dataSource.initialize();
 
-    await ormconfig
+    await dataSource
       .createQueryBuilder()
       .insert()
       .into(Plan)
@@ -20,6 +19,6 @@ export default class CreatePlans implements Seeder {
       .orIgnore()
       .execute();
 
-    await ormconfig.destroy();
+    await dataSource.destroy();
   }
 }
