@@ -8,10 +8,12 @@ import {
   OneToMany,
 } from 'typeorm';
 
+export type PlanName = 'Free' | 'Premium' | 'Admin'
+
 @Entity('plans')
 export class Plan {
   @PrimaryColumn({ default: 'Free' })
-  planName: 'Free' | 'Premium' | 'Admin';
+  planName: PlanName;
 
   @Column('float', { nullable: false, default: 0.0 })
   price: number;

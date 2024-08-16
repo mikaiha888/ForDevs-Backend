@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { dataSourceOptions } from 'db/data-source';
+import dataSource from '../ormconfig';
 
 import { UserModule } from './modules/user/user.module';
 import { LikeModule } from './modules/like/like.module';
@@ -16,7 +16,7 @@ import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(dataSourceOptions),
+    TypeOrmModule.forRoot(dataSource),
     TagModule,
     UserModule,
     LikeModule,

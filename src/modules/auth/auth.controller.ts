@@ -9,7 +9,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('register')
-  register(@Body() registerAuthDto: RegisterAuthDto): Promise<User> {
+  register(@Body() registerAuthDto: RegisterAuthDto){
     return this.authService.register(registerAuthDto);
   }
 

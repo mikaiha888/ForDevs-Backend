@@ -1,5 +1,5 @@
 import { Link } from 'src/modules/link/entities/link.entity';
-import { Plan } from 'src/modules/plan/entities/plan.entity';
+import { Plan, PlanName } from 'src/modules/plan/entities/plan.entity';
 import { Project } from 'src/modules/project/entities/project.entity';
 import { Review } from 'src/modules/review/entities/review.entity';
 import {
@@ -11,6 +11,7 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
   ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 
 @Entity()
@@ -42,14 +43,9 @@ export class User {
   @Column({ nullable: true })
   coverImage: string;
 
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-  @DeleteDateColumn()
-  deletedAt: Date;
+  @ManyToOne(() => Plan, (plan) => plan.users)
+  @JoinColumn({ name: 'plan', referencedColumnName: 'planName' })
+  plan: Plan;
 
   @OneToMany(() => Project, (project) => project.user)
   projects: Project[];
@@ -60,6 +56,12 @@ export class User {
   @OneToMany(() => Link, (link) => link.user)
   links: Link[];
 
-  @ManyToOne(() => Plan, (plan) => plan.users)
-  plan: Link[];
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deletedAt: Date;
 }
