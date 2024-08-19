@@ -1,6 +1,6 @@
 import { IsString, IsNotEmpty, IsOptional, IsArray } from 'class-validator';
-import { Technology } from 'src/technology/entities/technology.entity';
-import { Tag } from 'src/tag/entities/tag.entity';
+import { Technology } from 'src/modules/technology/entities/technology.entity';
+import { Tag } from 'src/modules/tag/entities/tag.entity';
 
 export class CreateProjectDto {
   @IsString()

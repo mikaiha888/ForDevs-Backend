@@ -1,5 +1,5 @@
-import { User } from '../../modules/user/entities/user.entity'
 import { faker } from '@faker-js/faker';
+import { User } from 'src/modules/user/entities/user.entity';
 
 const userFactory = () => {
   const user = new User();

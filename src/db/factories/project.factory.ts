@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
+import { User } from 'src/modules/user/entities/user.entity';
 import { Project } from '../../modules/project/entities/project.entity';
-import { User } from '../../modules/user/entities/user.entity';
 import { Tag } from '../../modules/tag/entities/tag.entity';
 import { Technology } from '../../modules/technology/entities/technology.entity';
 import datasource from '../data-source';

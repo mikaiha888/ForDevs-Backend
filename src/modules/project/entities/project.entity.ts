@@ -1,6 +1,6 @@
-import { Tag } from 'src/tag/entities/tag.entity';
-import { Technology } from 'src/technology/entities/technology.entity';
-import { User } from 'src/user/entities/user.entity';
+import { Tag } from 'src/modules/tag/entities/tag.entity';
+import { Technology } from 'src/modules/technology/entities/technology.entity';
+import { User } from 'src/modules/user/entities/user.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
