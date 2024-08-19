@@ -26,7 +26,7 @@ const projectFactory = async () => {
 
   project.title = faker.lorem.words(3);
   project.description = faker.lorem.paragraph();
-  project.image = faker.image.url();
+  project.image = faker.image.imageUrl();
   project.user = user;
   project.tags = selectedTags;
   project.technologies = selectedTechnologies;
