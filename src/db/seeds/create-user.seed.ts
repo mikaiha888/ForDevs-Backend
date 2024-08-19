@@ -9,5 +9,6 @@ export default class CreateUsers implements Seeder {
   ): Promise<void> {
     const userFactory = factoryManager.get(User);
     await userFactory.saveMany(10);
+    console.log('Users created');  
   }
 }

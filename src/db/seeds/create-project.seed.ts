@@ -9,5 +9,6 @@ export default class CreateProjects implements Seeder {
   ): Promise<void> {
     const projectFactory = factoryManager.get(Project);
     await projectFactory.saveMany(10);
+    console.log('Projects created');  
   }
 }
