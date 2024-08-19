@@ -12,13 +12,11 @@ import { CommissionModule } from './modules/commission/commission.module';
 import { LinkModule } from './modules/link/link.module';
 import { PlanModule } from './modules/plan/plan.module';
 import { AuthModule } from './modules/auth/auth.module';
-import dataSource from '../ormconfig';
+import { dataSourceOptions } from './db/data-source';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      ...dataSource.options, // Usa las opciones de configuración directamente de dataSource
-    }),
+    TypeOrmModule.forRoot(dataSourceOptions),
     TagModule,
     UserModule,
     LikeModule,
