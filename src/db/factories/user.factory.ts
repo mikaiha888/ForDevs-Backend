@@ -3,6 +3,7 @@ import { faker } from '@faker-js/faker';
 
 const userFactory = (): User => {
   const user = new User();
+
   user.firstName = faker.person.firstName();
   user.lastName = faker.person.lastName();
   user.email = faker.internet.email();
@@ -11,6 +12,7 @@ const userFactory = (): User => {
   user.aboutMe = faker.lorem.paragraph();
   user.image = faker.image.avatar();
   user.coverImage = faker.image.url();
+  
   return user;
 };
 
