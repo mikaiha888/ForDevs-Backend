@@ -6,6 +6,7 @@ import { Technology } from 'src/modules/technology/entities/technology.entity';
 import { Review } from 'src/modules/review/entities/review.entity';
 import { Plan } from 'src/modules/plan/entities/plan.entity';
 import { Like } from 'src/modules/like/entities/like.entity';
+import { Link } from 'src/modules/link/entities/link.entity';
 
 import userFactory from './user.factory';
 import projectFactory from './project.factory';
@@ -14,6 +15,7 @@ import technologyFactory from './technology.factory';
 import reviewFactory from './review.factory';
 import planFactory from './plan.factory';
 import likeFactory from './like.factory';
+import linkFactory from './link.factory';
 
 export const registerFactories = () => {
   setSeederFactory(User, userFactory);
@@ -23,4 +25,5 @@ export const registerFactories = () => {
   setSeederFactory(Review, reviewFactory);
   setSeederFactory(Plan, planFactory);
   setSeederFactory(Like, likeFactory);
+  setSeederFactory(Link, linkFactory);
 };
