@@ -1,5 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
-import { User } from '../../user/entities/user.entity'; 
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
+import { User } from '../../user/entities/user.entity';
 
 @Entity()
 export class Contract {
@@ -7,18 +13,12 @@ export class Contract {
   id: string;
 
   @ManyToOne(() => User, { nullable: false })
-  @JoinColumn({ name: 'senderId' })
+  @JoinColumn({ name: 'sender_id' })
   sender: User;
 
-  @Column({ type: 'uuid' })
-  senderId: string;
-
   @ManyToOne(() => User, { nullable: false })
-  @JoinColumn({ name: 'receiverId' })
+  @JoinColumn({ name: 'receiver_id' })
   receiver: User;
-
-  @Column({ type: 'uuid' })
-  receiverId: string;
 
   @Column({ length: 255, default: 'Contrato para proyecto' })
   subject: string;
@@ -29,7 +29,7 @@ export class Contract {
   @Column({ type: 'float', default: 1.0 })
   budget: number;
 
-  @Column({  length: 10, default: 'ARS' })
+  @Column({ length: 10, default: 'ARS' })
   currency: string;
 
   @Column({ length: 50, default: 'Ahora' })
@@ -49,5 +49,5 @@ export class Contract {
   updatedAt: Date;
 
   @Column({ type: 'timestamp', nullable: true })
-  deletedAt: Date; 
+  deletedAt: Date;
 }

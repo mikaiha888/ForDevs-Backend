@@ -16,6 +16,11 @@ import reviewFactory from './review.factory';
 import planFactory from './plan.factory';
 import likeFactory from './like.factory';
 import linkFactory from './link.factory';
+import { Contract } from 'src/modules/contract/entities/contract.entity';
+import contractFactory from './contracts.factory';
+import { Commission } from 'src/modules/commission/entities/commission.entity';
+import commissionFactory from './commission.factory';
+
 
 export const registerFactories = () => {
   setSeederFactory(User, userFactory);
@@ -26,4 +31,6 @@ export const registerFactories = () => {
   setSeederFactory(Plan, planFactory);
   setSeederFactory(Like, likeFactory);
   setSeederFactory(Link, linkFactory);
+  setSeederFactory(Contract, contractFactory)
+  setSeederFactory(Commission, commissionFactory)
 };
