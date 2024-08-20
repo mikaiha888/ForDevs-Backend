@@ -5,6 +5,7 @@ import datasource from '../data-source';
 
 const reviewFactory = async () => {
   const userRepository = datasource.getRepository(User);
+  const reviewRepository = datasource.getRepository(Review);
 
   const users = await userRepository.find();
 
@@ -12,20 +13,37 @@ const reviewFactory = async () => {
     throw new Error('Se necesitan al menos dos usuarios para crear reseñas');
   }
 
-  const reviewer = users[Math.floor(Math.random() * users.length)];
-  let reviewedUser = users[Math.floor(Math.random() * users.length)];
+  let review: Review;
+  let isUnique = false;
 
-  while (reviewer.id === reviewedUser.id) {
-    reviewedUser = users[Math.floor(Math.random() * users.length)];
+  while (!isUnique) {
+    const reviewerIndex = Math.floor(Math.random() * users.length);
+    const reviewer = users[reviewerIndex];
+
+    const remainingUsers = [...users];
+    remainingUsers.splice(reviewerIndex, 1);
+
+    const reviewedUser =
+      remainingUsers[Math.floor(Math.random() * remainingUsers.length)];
+
+    const existingReview = await reviewRepository.findOne({
+      where: {
+        reviewer: { id: reviewer.id },
+        reviewedUser: { id: reviewedUser.id },
+      },
+    });
+
+    if (!existingReview) {
+      review = new Review();
+      review.rating = faker.number.int({ min: 1, max: 5 });
+      review.comment = faker.lorem.sentence();
+      review.reviewer = reviewer;
+      review.reviewedUser = reviewedUser;
+      isUnique = true; 
+    }
   }
 
-  const review = new Review();
-  review.rating = faker.number.int({ min: 1, max: 5 });
-  review.comment = faker.lorem.sentence();
-  review.reviewer = reviewer;
-  review.reviewedUser = reviewedUser;
-
-  return review;
+  return review; 
 };
 
 export default reviewFactory;
