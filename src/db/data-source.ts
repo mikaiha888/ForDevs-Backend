@@ -12,7 +12,7 @@ export const dataSourceOptions: DataSourceOptions & SeederOptions = ({
   username: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  migrations: ['dist/db/migrations/*.{ts,js}'],
+  migrations: [__dirname + '/migrations/*{.ts,.js}'],
   entities: [__dirname + '/../modules/**/entities/*.entity.{js,ts}'],
   seeds: [MainSeeder],
   factories: ['src/db/factories/**.factory.ts'],

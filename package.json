@@ -19,10 +19,10 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "seeds": "ts-node -r tsconfig-paths/register src/db/seeds",
-    "typeorm": "npm run build && npx typeorm -d dist/db/data-source.js",
-    "migration:run": "npm run typeorm migration:run",
-    "migration:revert": "npm run typeorm migration:revert",
-    "migration:generate": "npm run typeorm migration:generate"
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli",
+    "migration:run": "npm run typeorm -- migration:run -d src/db/data-source.ts",
+    "migration:revert": "npm run typeorm -- migration:revert -d src/db/data-source.ts",
+    "migration:generate": "bash script.sh"
   },
   "dependencies": {
     "@faker-js/faker": "^8.4.1",
