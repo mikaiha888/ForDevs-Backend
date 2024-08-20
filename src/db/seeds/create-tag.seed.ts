@@ -10,7 +10,6 @@ export default class CreateTags implements Seeder {
     console.log('Creating tags...');
     const tagFactory = factoryManager.get(Tag);
     
-    // Si la factory no está definida, lanza un error (manejo básico)
     if (!tagFactory) {
       console.error('Tag factory not found');
       return;

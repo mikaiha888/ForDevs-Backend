@@ -13,9 +13,10 @@ const projectFactory = async () => {
   const technologyRepository = datasource.getRepository(Technology);
 
   const users = await userRepository.find();
-  const user = users.length > 0
-    ? users[Math.floor(Math.random() * users.length)]
-    : await userRepository.save({ firstName: faker.internet.userName() });
+  const user =
+    users.length > 0
+      ? users[Math.floor(Math.random() * users.length)]
+      : await userRepository.save({ firstName: faker.internet.userName() });
 
   const tags = await tagRepository.find();
   const technologies = await technologyRepository.find();
@@ -26,7 +27,7 @@ const projectFactory = async () => {
 
   project.title = faker.lorem.words(3);
   project.description = faker.lorem.paragraph();
-  project.image = faker.image.imageUrl();
+  project.image = faker.image.url();
   project.user = user;
   project.tags = selectedTags;
   project.technologies = selectedTechnologies;

@@ -10,7 +10,6 @@ export default class CreateProjects implements Seeder {
     console.log('Creating projects...');
     const projectFactory = factoryManager.get(Project);
     
-    // Verifica si la factory está registrada
     if (!projectFactory) {
       console.error('Project factory not found');
       return;

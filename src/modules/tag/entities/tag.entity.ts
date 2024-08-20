@@ -16,6 +16,5 @@ export class Tag {
   name: string;
 
   @ManyToMany(() => Project, (project) => project.tags)
-  @JoinColumn({ name: 'projects' })
   projects: Project[];
 }
