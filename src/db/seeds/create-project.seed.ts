@@ -7,8 +7,16 @@ export default class CreateProjects implements Seeder {
     dataSource: DataSource,
     factoryManager: SeederFactoryManager,
   ): Promise<void> {
+    console.log('Creating projects...');
     const projectFactory = factoryManager.get(Project);
+    
+    // Verifica si la factory está registrada
+    if (!projectFactory) {
+      console.error('Project factory not found');
+      return;
+    }
+
     await projectFactory.saveMany(10);
-    console.log('Projects created');  
+    console.log('Projects created');
   }
 }
