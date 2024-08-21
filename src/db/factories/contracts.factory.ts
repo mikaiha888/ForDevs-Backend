@@ -1,15 +1,16 @@
 import { Contract } from 'src/modules/contract/entities/contract.entity';
-import { faker } from '@faker-js/faker';
 import { User } from 'src/modules/user/entities/user.entity';
+import { faker } from '@faker-js/faker';
 import dataSource from '../data-source';
 
 const contractFactory = async () => {
   const userRepository = dataSource.getRepository(User);
   const contractRepository = dataSource.getRepository(Contract);
+
   const users = await userRepository.find();
 
   if (users.length < 2) {
-    throw new Error('Se necesitan al menos dos usuarios para crear reseñas');
+    throw new Error('At least two users are required to create contracts');
   }
 
   let contract: Contract;
@@ -25,17 +26,15 @@ const contractFactory = async () => {
     const receiver =
       remainingUsers[Math.floor(Math.random() * remainingUsers.length)];
 
-    const existingContract = await contractRepository.findOne({
-      where: {
-        sender: { id: sender.id },
-        receiver: { id: receiver.id },
-      },
-    });
+    // const existingContract = await contractRepository.findOne({
+    //   where: {
+    //     sender: { id: sender.id },
+    //     receiver: { id: receiver.id },
+    //   },
+    // });
 
-    if (!existingContract) {
+    // if (!existingContract) {
       contract = new Contract();
-      contract.sender = sender;
-      contract.receiver = receiver;
       contract.subject = faker.lorem.words(3);
       contract.projectDescription = faker.lorem.paragraph();
       contract.budget = parseFloat(
@@ -48,8 +47,10 @@ const contractFactory = async () => {
         'pending',
         'accepted',
       ]);
+      contract.sender = sender;
+      contract.receiver = receiver;
       isUnique = true;
-    }
+    // }
   }
 
   return contract;
