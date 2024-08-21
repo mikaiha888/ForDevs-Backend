@@ -7,18 +7,18 @@ import { Review } from 'src/modules/review/entities/review.entity';
 import { Plan } from 'src/modules/plan/entities/plan.entity';
 import { Like } from 'src/modules/like/entities/like.entity';
 import { Link } from 'src/modules/link/entities/link.entity';
+import { Contract } from 'src/modules/contract/entities/contract.entity';
+import { Commission } from 'src/modules/commission/entities/commission.entity';
 
-import userFactory from './user.factory';
 import projectFactory from './project.factory';
+import userFactory from './user.factory';
 import tagFactory from './tag.factory';
 import technologyFactory from './technology.factory';
 import reviewFactory from './review.factory';
 import planFactory from './plan.factory';
 import likeFactory from './like.factory';
 import linkFactory from './link.factory';
-import { Contract } from 'src/modules/contract/entities/contract.entity';
 import contractFactory from './contracts.factory';
-import { Commission } from 'src/modules/commission/entities/commission.entity';
 import commissionFactory from './commission.factory';
 
 

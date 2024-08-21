@@ -25,25 +25,16 @@ const reviewFactory = async () => {
 
     const reviewedUser =
       remainingUsers[Math.floor(Math.random() * remainingUsers.length)];
-
-    // const existingReview = await reviewRepository.findOne({
-    //   where: {
-    //     reviewer: { id: reviewer.id },
-    //     reviewedUser: { id: reviewedUser.id },
-    //   },
-    // });
-
-    // if (!existingReview) {
-      review = new Review();
-      review.rating = faker.number.int({ min: 1, max: 5 });
-      review.comment = faker.lorem.sentence();
-      review.reviewer = reviewer;
-      review.reviewedUser = reviewedUser;
-      isUnique = true; 
-    // }
+      
+    review = new Review();
+    review.rating = faker.number.int({ min: 1, max: 5 });
+    review.comment = faker.lorem.sentence();
+    review.reviewer = reviewer;
+    review.reviewedUser = reviewedUser;
+    isUnique = true;
   }
 
-  return review; 
+  return review;
 };
 
 export default reviewFactory;

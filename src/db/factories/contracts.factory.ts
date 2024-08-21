@@ -5,7 +5,6 @@ import dataSource from '../data-source';
 
 const contractFactory = async () => {
   const userRepository = dataSource.getRepository(User);
-  const contractRepository = dataSource.getRepository(Contract);
 
   const users = await userRepository.find();
 
@@ -26,14 +25,6 @@ const contractFactory = async () => {
     const receiver =
       remainingUsers[Math.floor(Math.random() * remainingUsers.length)];
 
-    // const existingContract = await contractRepository.findOne({
-    //   where: {
-    //     sender: { id: sender.id },
-    //     receiver: { id: receiver.id },
-    //   },
-    // });
-
-    // if (!existingContract) {
       contract = new Contract();
       contract.subject = faker.lorem.words(3);
       contract.projectDescription = faker.lorem.paragraph();
@@ -50,7 +41,6 @@ const contractFactory = async () => {
       contract.sender = sender;
       contract.receiver = receiver;
       isUnique = true;
-    // }
   }
 
   return contract;
