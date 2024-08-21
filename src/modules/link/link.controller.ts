@@ -3,7 +3,7 @@ import { LinkService } from './link.service';
 import { CreateLinkDto } from './dto/create-link.dto';
 import { UpdateLinkDto } from './dto/update-link.dto';
 
-@Controller('link')
+@Controller('links')
 export class LinkController {
   constructor(private readonly linkService: LinkService) {}
 
@@ -19,16 +19,16 @@ export class LinkController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.linkService.findOne(+id);
+    return this.linkService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateLinkDto: UpdateLinkDto) {
-    return this.linkService.update(+id, updateLinkDto);
+    return this.linkService.update(id, updateLinkDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.linkService.remove(+id);
+    return this.linkService.remove(id);
   }
 }
