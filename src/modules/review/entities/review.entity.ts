@@ -13,11 +13,11 @@ export class Review {
   comment: string;
 
   @ManyToOne(() => User, (user) => user.reviews)
-  @JoinColumn({ name: 'reviewer_id' })
+  @JoinColumn({ name: 'reviewer_id', referencedColumnName: 'id' })
   reviewer: User;
 
   @ManyToOne(() => User, (user) => user.reviews)
-  @JoinColumn({ name: 'reviewed_user_id' })
+  @JoinColumn({ name: 'reviewedUser_id', referencedColumnName: 'id' })
   reviewedUser: User;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })

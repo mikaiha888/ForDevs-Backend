@@ -36,11 +36,11 @@ export class Contract {
   status: 'rejected' | 'pending' | 'accepted';
 
   @ManyToOne(() => User, (user) => user.contracts)
-  @JoinColumn({ name: 'sender_id' })
+  @JoinColumn({ name: 'sender_id', referencedColumnName: 'id' })
   sender: User;
 
   @ManyToOne(() => User, (user) => user.contracts)
-  @JoinColumn({ name: 'receiver_id' })
+  @JoinColumn({ name: 'receiver_id', referencedColumnName: 'id' })
   receiver: User;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })

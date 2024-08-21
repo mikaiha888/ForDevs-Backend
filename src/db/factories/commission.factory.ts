@@ -7,7 +7,7 @@ const commissionFactory = async () => {
   const contractRepository = dataSource.getRepository(Contract);
 
   const contracts = await contractRepository.find({
-    relations: ['receiver', 'receiver.plan'],
+    relations: ['receiver.plan'],
   });
 
   const contract = contracts[Math.floor(Math.random() * contracts.length)];

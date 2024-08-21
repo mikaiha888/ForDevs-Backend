@@ -44,20 +44,20 @@ export class User {
   @Column({ nullable: true })
   coverImage: string;
 
-  @ManyToOne(() => Plan, (plan) => plan.users)
-  @JoinColumn({ name: 'plan', referencedColumnName: 'planName' })
+  @ManyToOne(() => Plan, (plan) => plan.users, { eager: true })
+  @JoinColumn({ name: 'planName', referencedColumnName: 'planName' })
   plan: Plan;
 
-  @OneToMany(() => Project, (project) => project.user)
+  @OneToMany(() => Project, (project) => project.user, { eager: true })
   projects: Project[];
 
-  @OneToMany(() => Review, (review) => review.reviewer)
+  @OneToMany(() => Review, (review) => review.reviewer, { eager: true })
   reviews: Review[];
 
-  @OneToMany(() => Contract, (contract) => contract.sender)
+  @OneToMany(() => Contract, (contract) => contract.sender, { eager: true })
   contracts: Contract[];
 
-  @OneToMany(() => Link, (link) => link.user)
+  @OneToMany(() => Link, (link) => link.user, { eager: true })
   links: Link[];
 
   @CreateDateColumn()

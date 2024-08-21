@@ -14,11 +14,17 @@ export class AuthService {
     @InjectRepository(Plan) private readonly planRepository: Repository<Plan>,
     private jwtAuthService: JwtService,
   ) {}
-  
+
   async register(registerAuthDto: RegisterAuthDto) {
     const password = await hash(registerAuthDto.password, 10);
-    const plan = await this.planRepository.findOne({ where: { planName: 'Free' } });
-    const newUser = this.userRepository.create({ ...registerAuthDto, password, plan });
+    const plan = await this.planRepository.findOne({
+      where: { planName: 'Free' },
+    });
+    const newUser = this.userRepository.create({
+      ...registerAuthDto,
+      password,
+      plan,
+    });
     return this.userRepository.save(newUser);
   }
 
@@ -32,8 +38,8 @@ export class AuthService {
       id: foundUser.id,
       firstName: foundUser.firstName,
       lastName: foundUser.lastName,
-      plan: foundUser.plan,
+      plan: { planName: foundUser.plan.planName },
     });
-    return token;
+    return { token, loggedUser: foundUser };
   }
 }

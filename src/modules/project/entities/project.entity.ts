@@ -40,11 +40,13 @@ export class Project {
   @ManyToOne(() => User, (user) => user.projects)
   user: User;
 
-  @ManyToMany(() => Tag, (tag) => tag.projects)
+  @ManyToMany(() => Tag, (tag) => tag.projects, { eager: true })
   @JoinTable({ name: 'project_tags' })
   tags: Tag[];
 
-  @ManyToMany(() => Technology, (technology) => technology.projects)
+  @ManyToMany(() => Technology, (technology) => technology.projects, {
+    eager: true,
+  })
   @JoinTable({ name: 'project_technologies' })
   technologies: Technology[];
 }
