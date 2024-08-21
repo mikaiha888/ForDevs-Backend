@@ -1,3 +1,4 @@
+import { Contract } from 'src/modules/contract/entities/contract.entity';
 import { Link } from 'src/modules/link/entities/link.entity';
 import { Plan, PlanName } from 'src/modules/plan/entities/plan.entity';
 import { Project } from 'src/modules/project/entities/project.entity';
@@ -52,6 +53,9 @@ export class User {
 
   @OneToMany(() => Review, (review) => review.reviewer)
   reviews: Review[];
+
+  @OneToMany(() => Contract, (contract) => contract.sender)
+  contracts: Contract[];
 
   @OneToMany(() => Link, (link) => link.user)
   links: Link[];

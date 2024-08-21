@@ -2,7 +2,6 @@ import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, Unique }
 import { User } from 'src/modules/user/entities/user.entity';
 
 @Entity()
-@Unique(["reviewer", "reviewedUser"])
 export class Review {
   @PrimaryGeneratedColumn('uuid')
   id: string;

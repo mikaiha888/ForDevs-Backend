@@ -10,7 +10,7 @@ const reviewFactory = async () => {
   const users = await userRepository.find();
 
   if (users.length < 2) {
-    throw new Error('Se necesitan al menos dos usuarios para crear reseñas');
+    throw new Error('At least two users are required to create reviews');
   }
 
   let review: Review;
@@ -26,21 +26,21 @@ const reviewFactory = async () => {
     const reviewedUser =
       remainingUsers[Math.floor(Math.random() * remainingUsers.length)];
 
-    const existingReview = await reviewRepository.findOne({
-      where: {
-        reviewer: { id: reviewer.id },
-        reviewedUser: { id: reviewedUser.id },
-      },
-    });
+    // const existingReview = await reviewRepository.findOne({
+    //   where: {
+    //     reviewer: { id: reviewer.id },
+    //     reviewedUser: { id: reviewedUser.id },
+    //   },
+    // });
 
-    if (!existingReview) {
+    // if (!existingReview) {
       review = new Review();
       review.rating = faker.number.int({ min: 1, max: 5 });
       review.comment = faker.lorem.sentence();
       review.reviewer = reviewer;
       review.reviewedUser = reviewedUser;
       isUnique = true; 
-    }
+    // }
   }
 
   return review; 
