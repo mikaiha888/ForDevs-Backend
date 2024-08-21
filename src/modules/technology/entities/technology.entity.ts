@@ -1,5 +1,5 @@
 import { Project } from "src/modules/project/entities/project.entity";
-import { Column, Entity, JoinColumn, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Technology {
@@ -10,6 +10,5 @@ export class Technology {
     name: string
 
     @ManyToMany(() => Project, (project) => project.technologies)
-    @JoinColumn({ name: 'projects' })
     projects: Project[]
 }

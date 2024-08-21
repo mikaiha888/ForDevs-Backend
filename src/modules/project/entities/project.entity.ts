@@ -10,6 +10,7 @@ import {
   DeleteDateColumn,
   ManyToOne,
   ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -40,8 +41,10 @@ export class Project {
   user: User;
 
   @ManyToMany(() => Tag, (tag) => tag.projects)
+  @JoinTable({ name: 'project_tags' })
   tags: Tag[];
 
   @ManyToMany(() => Technology, (technology) => technology.projects)
+  @JoinTable({ name: 'project_technologies' })
   technologies: Technology[];
 }

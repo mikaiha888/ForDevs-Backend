@@ -2,7 +2,6 @@ import { Project } from 'src/modules/project/entities/project.entity';
 import {
   Column,
   Entity,
-  JoinColumn,
   ManyToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -16,6 +15,5 @@ export class Tag {
   name: string;
 
   @ManyToMany(() => Project, (project) => project.tags)
-  @JoinColumn({ name: 'projects' })
   projects: Project[];
 }
