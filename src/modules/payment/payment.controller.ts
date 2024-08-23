@@ -25,8 +25,8 @@ export class PaymentController {
     return this.paymentService.handleStripePayment(sessionId, user, email);
   }
 
-  // @Post('subscription/cancel')
-  // cancelSubscription(@Body() user: any) {
-  //   return this.paymentService.cancelSubscription(user);
-  // }
+  @Post('subscription/cancel')
+  cancelSubscription(@Body('userId') userId: string) { 
+    return this.paymentService.cancelSubscription(userId);
+  }
 }
