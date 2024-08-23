@@ -37,7 +37,6 @@ export class PaymentService {
     try {
       const user = await this.userRepository.findOne({
         where: { id: userId },
-        relations: ['plan'],
       });
   
       if (!user) {
