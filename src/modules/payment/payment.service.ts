@@ -9,8 +9,8 @@ export class PaymentService {
     private readonly stripeService: StripeService,
   ) {}
 
-  async createMercadoPagoPreference(title: string, quantity: number, unit_price: number, user: any){
-    return this.mercadoPagoService.createPreference(title, quantity, unit_price, user);
+  async createMercadoPagoPreference(productData: any){
+    return this.mercadoPagoService.createPreference(productData);
   }
 
   async handleMercadoPagoNotification(payment: any) {

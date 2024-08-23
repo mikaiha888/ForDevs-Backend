@@ -12,8 +12,8 @@ import { CommissionModule } from './modules/commission/commission.module';
 import { LinkModule } from './modules/link/link.module';
 import { PlanModule } from './modules/plan/plan.module';
 import { AuthModule } from './modules/auth/auth.module';
-import { dataSourceOptions } from './db/data-source';
 import { PaymentModule } from './modules/payment/payment.module';
+import { dataSourceOptions } from './db/data-source';
 
 @Module({
   imports: [

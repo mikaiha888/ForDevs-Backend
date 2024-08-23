@@ -22,10 +22,10 @@ export class Payment {
   currency: string;
 
   @Column({ nullable: false })
-  paymentMethod: string; // Ej. 'Stripe', 'MercadoPago'
+  paymentMethod: 'Stripe' | 'MercadoPago'
 
   @Column({ nullable: false })
-  status: string; // Ej. 'succeeded', 'failed', 'pending'
+  status: 'succeeded' | 'failed' | 'pending'
 
   @CreateDateColumn()
   createdAt: Date;
