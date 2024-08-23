@@ -21,7 +21,8 @@ export class PaymentController {
   }
 
   @Post('stripe/notification')
-  handleStripePayment(@Body() { sessionId, user, email }: any) {
+  async handleStripePayment(@Body() body: { sessionId: string; user: string; email: string }) {
+    const { sessionId, user, email } = body;
     return this.paymentService.handleStripePayment(sessionId, user, email);
   }
 
