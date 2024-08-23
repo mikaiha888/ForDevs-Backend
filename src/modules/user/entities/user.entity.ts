@@ -1,5 +1,6 @@
 import { Contract } from 'src/modules/contract/entities/contract.entity';
 import { Link } from 'src/modules/link/entities/link.entity';
+import { Payment } from 'src/modules/payment/entities/payment.entity';
 import { Plan, PlanName } from 'src/modules/plan/entities/plan.entity';
 import { Project } from 'src/modules/project/entities/project.entity';
 import { Review } from 'src/modules/review/entities/review.entity';
@@ -59,6 +60,9 @@ export class User {
 
   @OneToMany(() => Link, (link) => link.user, { eager: true })
   links: Link[];
+
+  @OneToMany(() => Payment, (payment) => payment.user)
+  payments: Payment[];
 
   @CreateDateColumn()
   createdAt: Date;

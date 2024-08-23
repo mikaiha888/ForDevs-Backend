@@ -13,6 +13,7 @@ import { LinkModule } from './modules/link/link.module';
 import { PlanModule } from './modules/plan/plan.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { dataSourceOptions } from './db/data-source';
+import { PaymentModule } from './modules/payment/payment.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { dataSourceOptions } from './db/data-source';
     LinkModule,
     PlanModule,
     AuthModule,
+    PaymentModule,
   ],
 })
 export class AppModule {}
