@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { PlanService } from './plan.service';
 import { CreatePlanDto } from './dto/create-plan.dto';
 import { UpdatePlanDto } from './dto/update-plan.dto';
+import { PlanName } from './entities/plan.entity';
 
 @Controller('plan')
 export class PlanController {
@@ -17,18 +18,18 @@ export class PlanController {
     return this.planService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.planService.findOne(+id);
+  @Get(':planName')
+  findOne(@Param('planName') planName: PlanName) {
+    return this.planService.findOne(planName);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePlanDto: UpdatePlanDto) {
-    return this.planService.update(+id, updatePlanDto);
+  @Patch(':planName')
+  update(@Param('planName') planName: PlanName, @Body() updatePlanDto: UpdatePlanDto) {
+    return this.planService.update(planName, updatePlanDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.planService.remove(+id);
+  @Delete(':planName')
+  remove(@Param('planName') planName: PlanName) {
+    return this.planService.remove(planName);
   }
 }

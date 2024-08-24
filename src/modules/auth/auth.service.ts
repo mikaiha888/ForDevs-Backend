@@ -1,30 +1,25 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { Injectable } from '@nestjs/common';
 import { RegisterAuthDto } from './dto/register-auth.dto';
 import { hash } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
-import { Repository } from 'typeorm';
-import { Plan } from '../plan/entities/plan.entity';
-import { User } from '../user/entities/user.entity';
+import { PlanService } from '../plan/plan.service';
+import { UserService } from '../user/user.service';
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectRepository(User) private readonly userRepository: Repository<User>,
-    @InjectRepository(Plan) private readonly planRepository: Repository<Plan>,
+    private userService: UserService,
+    private planService: PlanService,
     private jwtService: JwtService,
   ) {}
 
   async register(registerAuthDto: RegisterAuthDto) {
     const password = await hash(registerAuthDto.password, 10);
-    const plan = await this.planRepository.findOne({
-      where: { planName: 'Free' },
-    });
-    const newUser = this.userRepository.create({
+    const plan = await this.planService.findOne('Free');
+    return await this.userService.create({
       ...registerAuthDto,
       password,
       plan,
     });
-    return this.userRepository.save(newUser);
   }
 
   async login(user: any) {
