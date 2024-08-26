@@ -1,10 +1,28 @@
-import { IsString, Min } from 'class-validator';
-import { Name } from '../entities/plan.entity';
+import {
+  IsString,
+  IsNumber,
+  IsArray,
+  IsOptional,
+} from 'class-validator';
 
 export class CreatePlanDto {
   @IsString()
-  name: Name;
+  name: 'Free' | 'Premium';
 
-  @Min(0, { message: 'Price must be equal or greater than 0' })
-  price: number;
+  @IsNumber()
+  amount: number;
+
+  @IsNumber()
+  quantity: number;
+
+  @IsString()
+  currency: 'ARS' | 'USD' | 'EUR';
+
+  @IsString()
+  description: string;
+
+  @IsArray()
+  @IsOptional()
+  @IsString({ each: true })
+  features?: string[];
 }

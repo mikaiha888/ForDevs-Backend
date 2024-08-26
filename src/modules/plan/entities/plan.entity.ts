@@ -1,29 +1,21 @@
+import { Product } from 'src/modules/product/entities/product.entity';
 import { User } from 'src/modules/user/entities/user.entity';
 import {
   Entity,
-  PrimaryColumn,
   Column,
-  CreateDateColumn,
-  UpdateDateColumn,
   OneToMany,
 } from 'typeorm';
 
 export type Name = 'Free' | 'Premium';
 
 @Entity('plans')
-export class Plan {
-  @PrimaryColumn({ default: 'Free' })
+export class Plan extends Product {
+  @Column({ nullable: false, unique: true, default: 'Free' })
   name: Name;
 
-  @Column('float', { nullable: false, default: 0.0 })
-  price: number;
+  @Column('text', { array: true, nullable: true })
+  features: string[];
 
   @OneToMany(() => User, (user) => user.plan)
   users: User[];
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 }
