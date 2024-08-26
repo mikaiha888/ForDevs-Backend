@@ -13,6 +13,7 @@ import { ProjectModule } from './modules/project/project.module';
 import { ContractModule } from './modules/contract/contract.module';
 import { TechnologyModule } from './modules/technology/technology.module';
 import { CommissionModule } from './modules/commission/commission.module';
+import { RoleModule } from './modules/role/role.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { CommissionModule } from './modules/commission/commission.module';
     LinkModule,
     PlanModule,
     AuthModule,
+    RoleModule,
   ],
 })
 export class AppModule {}

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreatePlanDto } from './dto/create-plan.dto';
 import { UpdatePlanDto } from './dto/update-plan.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Plan, PlanName } from './entities/plan.entity';
+import { Plan, Name } from './entities/plan.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -20,19 +20,19 @@ export class PlanService {
     return this.planRepository.find();
   }
 
-  async findOne(planName: PlanName): Promise<Plan> {
-    return this.planRepository.findOneBy({ planName });
+  async findOne(name: Name): Promise<Plan> {
+    return this.planRepository.findOneBy({ name });
   }
 
   async update(
-    planName: PlanName,
+    name: Name,
     updatePlanDto: UpdatePlanDto,
   ): Promise<Plan> {
-    await this.planRepository.update(planName, updatePlanDto);
-    return this.planRepository.findOneBy({ planName });
+    await this.planRepository.update(name, updatePlanDto);
+    return this.planRepository.findOneBy({ name });
   }
 
-  async remove(planName: PlanName): Promise<void> {
-    await this.planRepository.delete(planName);
+  async remove(name: Name): Promise<void> {
+    await this.planRepository.delete(name);
   }
 }

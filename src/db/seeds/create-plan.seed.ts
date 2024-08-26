@@ -16,11 +16,10 @@ export default class CreatePlans implements Seeder {
       return;
     }
 
-    const freePlan = await planFactory.make({ planName: 'Free', price: 0 });
-    const premiumPlan = await planFactory.make({ planName: 'Premium', price: 10.0 });
-    const adminPlan = await planFactory.make({ planName: 'Admin', price: 20.0 });
+    const freePlan = await planFactory.make({ name: 'Free', price: 0 });
+    const premiumPlan = await planFactory.make({ name: 'Premium', price: 10.0 });
 
-    await dataSource.getRepository(Plan).save([freePlan, premiumPlan, adminPlan]);
+    await dataSource.getRepository(Plan).save([freePlan, premiumPlan]);
 
     console.log('Plans created');
   }
