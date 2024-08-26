@@ -1,17 +1,25 @@
 import { User } from 'src/modules/user/entities/user.entity';
 import { faker } from '@faker-js/faker';
 import { Plan } from 'src/modules/plan/entities/plan.entity';
+import { Role } from 'src/modules/role/entities/role.entity';
 import { In } from 'typeorm';
 import { hash } from 'bcrypt';
 import dataSource from '../data-source';
 
 const userFactory = async () => {
   const plansRepository = dataSource.getRepository(Plan);
+  const rolesRepository = dataSource.getRepository(Role);
 
   const user = new User();
+
   const plans = await plansRepository.find({
     where: {
-      planName: In(['Free', 'Premium']),
+      name: In(['Free', 'Premium']),
+    },
+  });
+  const roles = await rolesRepository.find({
+    where: {
+      name: In(['User', 'Admin']),
     },
   });
 
@@ -26,6 +34,7 @@ const userFactory = async () => {
   user.image = faker.image.avatar();
   user.coverImage = faker.image.url();
   user.plan = faker.helpers.arrayElement(plans);
+  user.role = faker.helpers.arrayElement(roles);
 
   return user;
 };

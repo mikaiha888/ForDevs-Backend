@@ -1,8 +1,9 @@
 import { Contract } from 'src/modules/contract/entities/contract.entity';
 import { Link } from 'src/modules/link/entities/link.entity';
-import { Plan, PlanName } from 'src/modules/plan/entities/plan.entity';
+import { Plan } from 'src/modules/plan/entities/plan.entity';
 import { Project } from 'src/modules/project/entities/project.entity';
 import { Review } from 'src/modules/review/entities/review.entity';
+import { Role } from 'src/modules/role/entities/role.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -45,8 +46,12 @@ export class User {
   coverImage: string;
 
   @ManyToOne(() => Plan, (plan) => plan.users, { eager: true })
-  @JoinColumn({ name: 'planName', referencedColumnName: 'planName' })
+  @JoinColumn({ name: 'planName', referencedColumnName: 'name' })
   plan: Plan;
+
+  @ManyToOne(() => Role, (role) => role.users, { eager: true })
+  @JoinColumn({ name: 'roleName', referencedColumnName: 'name' })
+  role: Role;
 
   @OneToMany(() => Project, (project) => project.user, { eager: true })
   projects: Project[];
