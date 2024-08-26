@@ -5,6 +5,7 @@ import { Tag } from 'src/modules/tag/entities/tag.entity';
 import { Technology } from 'src/modules/technology/entities/technology.entity';
 import { Review } from 'src/modules/review/entities/review.entity';
 import { Plan } from 'src/modules/plan/entities/plan.entity';
+import { Role } from 'src/modules/role/entities/role.entity';
 import { Like } from 'src/modules/like/entities/like.entity';
 import { Link } from 'src/modules/link/entities/link.entity';
 import { Contract } from 'src/modules/contract/entities/contract.entity';
@@ -16,6 +17,7 @@ import tagFactory from './tag.factory';
 import technologyFactory from './technology.factory';
 import reviewFactory from './review.factory';
 import planFactory from './plan.factory';
+import roleFactory from './role.factory';
 import likeFactory from './like.factory';
 import linkFactory from './link.factory';
 import contractFactory from './contracts.factory';
@@ -29,6 +31,7 @@ export const registerFactories = () => {
   setSeederFactory(Technology, technologyFactory);
   setSeederFactory(Review, reviewFactory);
   setSeederFactory(Plan, planFactory);
+  setSeederFactory(Role, roleFactory);
   setSeederFactory(Like, likeFactory);
   setSeederFactory(Link, linkFactory);
   setSeederFactory(Contract, contractFactory)

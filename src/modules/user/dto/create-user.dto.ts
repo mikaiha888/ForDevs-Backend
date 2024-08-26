@@ -1,4 +1,5 @@
 import { IsEmail, IsNotEmpty, IsOptional, IsString, Length } from 'class-validator';
+import { Plan } from 'src/modules/plan/entities/plan.entity';
 
 export class CreateUserDto {
   @IsNotEmpty()
@@ -37,5 +38,9 @@ export class CreateUserDto {
   @IsOptional()
   @IsString()
   coverImage?: string;
+
+  @IsOptional()
+  @IsString()
+  plan?: Plan;
 }
 

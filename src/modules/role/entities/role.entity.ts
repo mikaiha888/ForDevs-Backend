@@ -2,21 +2,17 @@ import { User } from 'src/modules/user/entities/user.entity';
 import {
   Entity,
   PrimaryColumn,
-  Column,
+  OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
 } from 'typeorm';
 
-export type Name = 'Free' | 'Premium';
+export type Name = 'User' | 'Admin'
 
-@Entity('plans')
-export class Plan {
-  @PrimaryColumn({ default: 'Free' })
+@Entity('roles')
+export class Role {
+  @PrimaryColumn({ default: 'User' })
   name: Name;
-
-  @Column('float', { nullable: false, default: 0.0 })
-  price: number;
 
   @OneToMany(() => User, (user) => user.plan)
   users: User[];

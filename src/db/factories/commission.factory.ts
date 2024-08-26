@@ -14,10 +14,10 @@ const commissionFactory = async () => {
   const receiver = await contract.receiver
 
   commission.contract = contract;
-  if (receiver.plan.planName === 'Free') {
+  if (receiver.plan.name === 'Free') {
     commission.rate = 25;
   }
-  if (receiver.plan.planName === 'Premium') {
+  if (receiver.plan.name === 'Premium') {
     commission.rate = 5;
   }
   commission.amount = (commission.rate * contract.budget) / 100;

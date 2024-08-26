@@ -9,6 +9,7 @@ import CreateTagSeeder from './create-tag.seed';
 import CreateTechnologiesSeeder from './create-technology.seed';
 import CreateReviewsSeeder from './create-review.seed';
 import CreatePlansSeeder from './create-plan.seed';
+import CreateRolesSeeder from './create-role.seed';
 import CreateLikesSeeder from './create-likes.seed';
 import CreateLinksSeeder from './create-link.seed';
 import CreateContractsSeeder from './create-contract.seed';
@@ -20,6 +21,7 @@ class MainSeeder implements Seeder {
     factoryManager: SeederFactoryManager,
   ): Promise<void> {
     await new CreatePlansSeeder().run(dataSource, factoryManager);
+    await new CreateRolesSeeder().run(dataSource, factoryManager);
     await new CreateUserSeeder().run(dataSource, factoryManager);
     await new CreateTagSeeder().run(dataSource, factoryManager);
     await new CreateTechnologiesSeeder().run(dataSource, factoryManager);
