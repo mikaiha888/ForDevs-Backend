@@ -43,7 +43,7 @@ export class PaymentService {
         throw new Error('User not found');
       }
   
-      const freePlan = await this.planRepository.findOneBy({ planName: 'Free' });
+      const freePlan = await this.planRepository.findOneBy({ name: 'Free' });
       if (!freePlan) {
         throw new Error('Free plan not found');
       }

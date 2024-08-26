@@ -57,7 +57,7 @@ export class MercadoPagoService {
                     throw new NotFoundException('User not found');
                 }
     
-                const premiumPlan = await this.planRepository.findOneBy({ planName: 'Premium' });
+                const premiumPlan = await this.planRepository.findOneBy({ name: 'Premium' });
 
     
                 if (!premiumPlan) {

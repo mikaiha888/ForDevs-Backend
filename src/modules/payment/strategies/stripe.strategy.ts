@@ -48,7 +48,7 @@ export class StripeService {
           throw new Error('User not found');
         }
 
-        const premiumPlan = await this.planRepository.findOneBy({ planName: 'Premium' });
+        const premiumPlan = await this.planRepository.findOneBy({ name: 'Premium' });
         if (!premiumPlan) {
           throw new Error('Premium plan not found');
         }
