@@ -1,31 +1,16 @@
+import { ProductPaymentCommon } from 'src/modules/common/entities/product-payment-common.entity';
+import { Payment } from 'src/modules/payment/entities/payment.entity';
 import {
   Entity,
-  PrimaryGeneratedColumn,
-  CreateDateColumn,
-  UpdateDateColumn,
   Column,
+  OneToMany,
 } from 'typeorm';
 
 @Entity()
-export abstract class Product {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
-  @Column({ type: 'float' })
-  amount: number;
-
-  @Column({ type: 'int', default: 1 })
-  quantity: number;
-
-  @Column({ length: 10, default: 'ARS' })
-  currency: 'ARS' | 'USD' | 'EUR';
-
+export class Product extends ProductPaymentCommon {
   @Column({ nullable: false, type: 'text' })
   description: string;
 
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
+  @OneToMany(() => Payment, (payment) => payment.product)
+  payments: Payment[];
 }

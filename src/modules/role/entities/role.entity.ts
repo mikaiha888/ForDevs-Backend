@@ -9,7 +9,7 @@ import {
 
 export type Name = 'User' | 'Admin'
 
-@Entity('roles')
+@Entity()
 export class Role {
   @PrimaryColumn({ default: 'User' })
   name: Name;

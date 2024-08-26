@@ -8,7 +8,7 @@ import {
 
 export type Name = 'Free' | 'Premium';
 
-@Entity('plans')
+@Entity()
 export class Plan extends Product {
   @Column({ nullable: false, unique: true, default: 'Free' })
   name: Name;
