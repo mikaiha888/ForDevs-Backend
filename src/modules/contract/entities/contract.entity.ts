@@ -3,7 +3,6 @@ import { Product } from 'src/modules/product/entities/product.entity';
 import {
   Entity,
   Column,
-  PrimaryGeneratedColumn,
   ManyToOne,
   JoinColumn,
 } from 'typeorm';

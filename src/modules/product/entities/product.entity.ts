@@ -4,10 +4,12 @@ import {
   Entity,
   Column,
   OneToMany,
+  TableInheritance,
 } from 'typeorm';
 
 @Entity()
-export class Product extends ProductPaymentCommon {
+@TableInheritance({ column: { type: "varchar", name: "type" } })
+export abstract class Product extends ProductPaymentCommon {
   @Column({ nullable: false, type: 'text' })
   description: string;
 
