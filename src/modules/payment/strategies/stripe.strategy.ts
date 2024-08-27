@@ -43,7 +43,6 @@ export class StripeService {
     const subscription = await this.stripeClient.subscriptions.create({
       customer: customerId,
       items: [{ price: priceId }],
-      // Puedes agregar más opciones aquí como `trial_period_days`, `billing_cycle_anchor`, etc.
     });
 
     return subscription;

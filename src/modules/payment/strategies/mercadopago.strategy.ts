@@ -25,23 +25,15 @@ export class MercadoPagoService {
 
     public async createPreference(productData: any): Promise<string> {
         try {
-            if (productData.isSubscription) {
-                const plan = await this.planRepository.findOneBy({ name: 'Premium' });
-                if (!plan) {
-                    throw new NotFoundException('Plan not found');
-                }
-
-                const subscriptionUrl = `${plan.initPoint}&external_reference=${productData.user.id}`;
-
-                return subscriptionUrl; 
-            } else {
+            if (!productData.product) return `${process.env.MP_SUBSCRIPTION_URL}&external_reference=${productData.user.id}`        
+             else {
                 const preferenceData: any = {
                     items: [
                         {
-                            title: productData.title,
-                            quantity: productData.quantity || 1,
-                            currency_id: productData.currency || 'ARS',
-                            unit_price: productData.amount,
+                            title: productData.product.title,
+                            quantity: productData.product.quantity || 1,
+                            currency_id: productData.product.currency || 'ARS',
+                            unit_price: productData.product.amount,
                         },
                     ],
                     back_urls: {
