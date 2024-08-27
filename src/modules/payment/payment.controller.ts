@@ -27,7 +27,10 @@ export class PaymentController {
   }
 
   @Post('subscription/cancel')
-  cancelSubscription(@Body('userId') userId: string) { 
-    return this.paymentService.cancelSubscription(userId);
+  cancelSubscription(
+    @Body('userId') userId: string,
+    @Body('subscriptionId') subscriptionId: string,
+  ) {
+    return this.paymentService.cancelSubscription(userId, subscriptionId);
   }
 }

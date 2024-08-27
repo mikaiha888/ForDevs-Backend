@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { MercadoPagoService } from './strategies/mercadopago.strategy';
 import { StripeService } from './strategies/stripe.strategy';
 import { User } from '../user/entities/user.entity';
@@ -17,11 +17,11 @@ export class PaymentService {
         private readonly planRepository: Repository<Plan>,
   ) {}
 
-  async createMercadoPagoPreference(productData: any){
+  async createMercadoPagoPreference(productData: any): Promise<string> {
     return this.mercadoPagoService.createPreference(productData);
   }
 
-  async handleMercadoPagoNotification(payment: any) {
+  async handleMercadoPagoNotification(payment: any): Promise<string> {
     return this.mercadoPagoService.paymentNotification(payment);
   }
 
@@ -33,28 +33,30 @@ export class PaymentService {
     return this.stripeService.paymentNotification(sessionId, user, email);
   }
 
-  async cancelSubscription(userId: string): Promise<string> {
+  async cancelSubscription(userId: string, subscriptionId: string): Promise<string> {
     try {
       const user = await this.userRepository.findOne({
         where: { id: userId },
       });
   
       if (!user) {
-        throw new Error('User not found');
+        throw new NotFoundException('User not found');
       }
   
       const freePlan = await this.planRepository.findOneBy({ name: 'Free' });
       if (!freePlan) {
-        throw new Error('Free plan not found');
+        throw new NotFoundException('Free plan not found');
       }
-
+  
+      await this.mercadoPagoService.cancelSubscription(subscriptionId);
+  
       user.plan = freePlan;
       await this.userRepository.save(user);
   
-      return 'User plan updated to Free';
+      return 'User plan updated to Free and subscription cancelled';
     } catch (error) {
       console.error('Error cancelling subscription:', error);
-      throw new Error('Failed to cancel subscription');
+      throw new BadRequestException('Failed to cancel subscription');
     }
   }
   

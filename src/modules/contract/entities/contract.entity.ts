@@ -19,6 +19,9 @@ export class Contract extends Product {
   @Column({ nullable: false, default: 'pending' })
   status: 'rejected' | 'pending' | 'accepted';
 
+  @Column({ nullable: true })
+  paymentProviderId: string;
+
   @ManyToOne(() => User, (user) => user.contracts)
   @JoinColumn({ name: 'sender_id', referencedColumnName: 'id' })
   sender: User;

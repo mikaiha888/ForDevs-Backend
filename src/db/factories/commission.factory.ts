@@ -20,7 +20,7 @@ const commissionFactory = async () => {
   if (receiver.plan.name === 'Premium') {
     commission.rate = 5;
   }
-  commission.amount = (commission.rate * contract.budget) / 100;
+  commission.amount = (commission.rate * contract.amount) / 100;
 
   return commission;
 };

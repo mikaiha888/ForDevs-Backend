@@ -69,6 +69,9 @@ export class User {
   @OneToMany(() => Payment, (payment) => payment.user)
   payments: Payment[];
 
+  @Column({ nullable: true })
+  subscriptionId: string;
+
   @CreateDateColumn()
   createdAt: Date;
 
