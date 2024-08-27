@@ -3,14 +3,14 @@ import { User } from 'src/modules/user/entities/user.entity';
 import { Project } from '../../modules/project/entities/project.entity';
 import { Tag } from '../../modules/tag/entities/tag.entity';
 import { Technology } from '../../modules/technology/entities/technology.entity';
-import datasource from '../data-source';
+import dataSource from '../data-source';
 
 const projectFactory = async () => {
   const project = new Project();
 
-  const userRepository = datasource.getRepository(User);
-  const tagRepository = datasource.getRepository(Tag);
-  const technologyRepository = datasource.getRepository(Technology);
+  const userRepository = dataSource.getRepository(User);
+  const tagRepository = dataSource.getRepository(Tag);
+  const technologyRepository = dataSource.getRepository(Technology);
 
   const users = await userRepository.find();
   const user =

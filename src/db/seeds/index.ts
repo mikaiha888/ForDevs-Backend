@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm';
 import { runSeeders, Seeder, SeederFactoryManager } from 'typeorm-extension';
-import dataSource from '../data-source';
 import { registerFactories } from '../factories';
+import dataSource from '../data-source';
 
 import CreateUserSeeder from './create-user.seed';
 import CreateProjectSeeder from './create-project.seed';
@@ -14,6 +14,7 @@ import CreateLikesSeeder from './create-likes.seed';
 import CreateLinksSeeder from './create-link.seed';
 import CreateContractsSeeder from './create-contract.seed';
 import CreateCommissionsSeeder from './create-commission.seed';
+import CreatePaymentSeeder from './create-payment.seed';
 
 class MainSeeder implements Seeder {
   async run(
@@ -31,6 +32,7 @@ class MainSeeder implements Seeder {
     await new CreateLinksSeeder().run(dataSource, factoryManager);
     await new CreateContractsSeeder().run(dataSource, factoryManager);
     await new CreateCommissionsSeeder().run(dataSource, factoryManager);
+    await new CreatePaymentSeeder().run(dataSource, factoryManager);
   }
 }
 
