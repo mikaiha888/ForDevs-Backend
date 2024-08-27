@@ -42,6 +42,12 @@ export class Plan extends Product {
   @Column({ nullable: true, type: 'int', default: 0 })
   subscribedCount: number; 
 
+  @Column({ nullable: true })
+  stripeProductId: string;
+
+  @Column({ nullable: true })
+  stripePriceId: string; 
+
   @OneToMany(() => User, (user) => user.plan)
   users: User[];
 }

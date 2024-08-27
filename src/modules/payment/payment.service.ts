@@ -25,12 +25,12 @@ export class PaymentService {
     return this.mercadoPagoService.paymentNotification(payment);
   }
 
-  async createStripeSession(title: string, quantity: number, unit_price: number) {
-    return this.stripeService.createSession(title, quantity, unit_price);
+  async createStripeSession(productData: any) {
+    return this.stripeService.createSession(productData);
   }
 
-  async handleStripePayment(sessionId: string, user: any, email: string) {
-    return this.stripeService.paymentNotification(sessionId, user, email);
+  async handleStripePayment(sessionId: string) {
+    return this.stripeService.paymentNotification(sessionId);
   }
 
   async cancelSubscription(userId: string, subscriptionId: string): Promise<string> {

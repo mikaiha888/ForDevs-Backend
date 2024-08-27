@@ -17,13 +17,12 @@ export class PaymentController {
 
   @Post('stripe/create')
   createStripeSession(@Body() createPaymentDto: any) {
-    return this.paymentService.createStripeSession(createPaymentDto.title, createPaymentDto.quantity, createPaymentDto.unit_price);
+    return this.paymentService.createStripeSession(createPaymentDto);
   }
 
   @Post('stripe/notification')
-  async handleStripePayment(@Body() body: { sessionId: string; user: string; email: string }) {
-    const { sessionId, user, email } = body;
-    return this.paymentService.handleStripePayment(sessionId, user, email);
+  async handleStripePayment(@Body() body: { sessionId: string }) {
+    return this.paymentService.handleStripePayment(body.sessionId);
   }
 
   @Post('subscription/cancel')
