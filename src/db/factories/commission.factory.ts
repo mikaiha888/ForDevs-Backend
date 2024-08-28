@@ -7,22 +7,34 @@ const commissionFactory = async () => {
   const contractRepository = dataSource.getRepository(Contract);
 
   const contracts = await contractRepository.find({
-    relations: ['receiver.plan'],
+    relations: ['receiver.subscription.plan'],
   });
 
   const contract = contracts[Math.floor(Math.random() * contracts.length)];
-  const receiver = await contract.receiver
+  const receiver = contract.receiver;
 
   commission.contract = contract;
-  if (receiver.plan.name === 'Free') {
-    commission.rate = 25;
+  console.log('COMMISSION CONTRACT:', commission);
+  console.log('CONTRACT LOG:', contract);
+
+  if (receiver?.subscription?.plan?.name) {
+    if (receiver.subscription.plan.name === 'Free') {
+      commission.rate = 25;
+    } else if (receiver.subscription.plan.name === 'Premium') {
+      commission.rate = 5;
+    } else {
+      console.log('Unknown plan:', receiver.subscription.plan.name);
+      commission.rate = 25; 
+    }
+  } else {
+    console.error('Receiver, subscription, or plan is null');
+    commission.rate = 25; 
   }
-  if (receiver.plan.name === 'Premium') {
-    commission.rate = 5;
-  }
+
   commission.amount = (commission.rate * contract.amount) / 100;
 
   return commission;
 };
 
 export default commissionFactory;
+

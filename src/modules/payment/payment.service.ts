@@ -49,10 +49,7 @@ export class PaymentService {
       }
   
       await this.mercadoPagoService.cancelSubscription(subscriptionId);
-  
-      user.plan = freePlan;
-      await this.userRepository.save(user);
-  
+    
       return 'User plan updated to Free and subscription cancelled';
     } catch (error) {
       console.error('Error cancelling subscription:', error);

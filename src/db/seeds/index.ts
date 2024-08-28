@@ -32,7 +32,7 @@ class MainSeeder implements Seeder {
     await new CreateLinksSeeder().run(dataSource, factoryManager);
     await new CreateContractsSeeder().run(dataSource, factoryManager);
     await new CreateCommissionsSeeder().run(dataSource, factoryManager);
-    await new CreatePaymentSeeder().run(dataSource, factoryManager);
+    // await new CreatePaymentSeeder().run(dataSource, factoryManager);
   }
 }
 

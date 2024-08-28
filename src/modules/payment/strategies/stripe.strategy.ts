@@ -77,7 +77,6 @@ export class StripeService {
           throw new Error('Premium plan not found');
         }
 
-        user.plan = premiumPlan;
         await this.userRepository.save(user);
 
         return 'User plan updated to Premium';

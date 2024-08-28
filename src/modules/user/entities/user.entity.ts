@@ -1,10 +1,10 @@
 import { Contract } from 'src/modules/contract/entities/contract.entity';
 import { Link } from 'src/modules/link/entities/link.entity';
 import { Payment } from 'src/modules/payment/entities/payment.entity';
-import { Plan } from 'src/modules/plan/entities/plan.entity';
 import { Project } from 'src/modules/project/entities/project.entity';
 import { Review } from 'src/modules/review/entities/review.entity';
 import { Role } from 'src/modules/role/entities/role.entity';
+import { Subscription } from 'src/modules/subscription/entities/subscription.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -15,6 +15,7 @@ import {
   DeleteDateColumn,
   ManyToOne,
   JoinColumn,
+  OneToOne,
 } from 'typeorm';
 
 @Entity()
@@ -46,9 +47,9 @@ export class User {
   @Column({ nullable: true })
   coverImage: string;
 
-  @ManyToOne(() => Plan, (plan) => plan.users, { eager: true })
-  @JoinColumn({ name: 'planName', referencedColumnName: 'name' })
-  plan: Plan;
+  @OneToOne(() => Subscription, (subscription) => subscription.user, {eager: true})
+  @JoinColumn ({name: 'subscriptionId', referencedColumnName: 'id'})
+  subscription: Subscription;
 
   @ManyToOne(() => Role, (role) => role.users, { eager: true })
   @JoinColumn({ name: 'roleName', referencedColumnName: 'name' })
@@ -68,9 +69,6 @@ export class User {
 
   @OneToMany(() => Payment, (payment) => payment.user)
   payments: Payment[];
-
-  @Column({ nullable: true })
-  subscriptionId: string;
 
   @CreateDateColumn()
   createdAt: Date;
