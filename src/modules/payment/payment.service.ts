@@ -17,11 +17,11 @@ export class PaymentService {
         private readonly planRepository: Repository<Plan>,
   ) {}
 
-  async createMercadoPagoPreference(productData: any): Promise<string> {
+  async createMercadoPagoPreference(productData: any) {
     return this.mercadoPagoService.createPreference(productData);
   }
 
-  async handleMercadoPagoNotification(payment: any): Promise<string> {
+  async handleMercadoPagoNotification(payment: any) {
     return this.mercadoPagoService.paymentNotification(payment);
   }
 

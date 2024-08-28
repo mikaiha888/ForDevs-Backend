@@ -1,13 +1,11 @@
 import {
   Entity,
-  ManyToOne,
   JoinColumn,
   OneToOne,
   PrimaryColumn,
   Column,
 } from 'typeorm';
 import { User } from '../../user/entities/user.entity';
-
 
 @Entity()
 export class Subscription {
@@ -18,12 +16,12 @@ export class Subscription {
   @JoinColumn({ name: 'userId' })
   user: User;
 
-  @Column()
+  @Column({ nullable: false, default: 'pending' })
   status: string;
 
-  @Column()
+  @Column({ nullable: false, default: new Date() })
   startDate: Date;
 
-  @Column()
+  @Column({ nullable: true, default: null })
   endDate: Date;
 }

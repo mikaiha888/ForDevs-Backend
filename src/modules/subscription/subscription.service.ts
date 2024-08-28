@@ -16,7 +16,7 @@ async create(createSubscriptionDto: CreateSubscriptionDto): Promise<Subscription
   const subscription = this.subscriptionRepository.create({
     id: createSubscriptionDto.id,
     user: createSubscriptionDto.user ,
-    plan: createSubscriptionDto.plan ,
+    status: createSubscriptionDto.status,
   });
   return this.subscriptionRepository.save(subscription);
 }

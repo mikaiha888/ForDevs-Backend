@@ -13,12 +13,27 @@ const paymentFactory = async () => {
   const product = await productsRepository.find();
 
   payment.method = faker.helpers.arrayElement(['Stripe', 'MercadoPago']);
-  payment.status = faker.helpers.arrayElement(['succeeded', 'failed', 'pending'])
-  payment.amount = faker.number.float({min: 100, max: 1000});
+  payment.status = faker.helpers.arrayElement([
+    'succeeded',
+    'failed',
+    'pending',
+  ]);
+  payment.amount = faker.number.float({ min: 100, max: 1000 });
   payment.currency = faker.helpers.arrayElement(['ARS', 'USD', 'EUR']);
   payment.quantity = 1;
-  payment.user = faker.helpers.arrayElement(user)
-  payment.product = faker.helpers.arrayElement(product)
+  payment.user = faker.helpers.arrayElement(user);
+  payment.product = faker.helpers.arrayElement(product);
+  
+  if (payment.product?.contract) {
+    const contract = payment.product.contract;
+    if (contract.receiver.plan.name === 'Premium') {
+      payment.commission = (contract.amount * 5) / 100;
+    } else {
+      payment.commission = (contract.amount * 25) / 100;
+    }
+  } else {
+    payment.commission = 0;
+  }
 
   return payment;
 };

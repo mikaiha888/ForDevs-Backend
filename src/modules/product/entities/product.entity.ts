@@ -11,7 +11,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-export abstract class Product extends ProductPaymentCommon {
+export class Product extends ProductPaymentCommon {
   @Column({ nullable: false, type: 'text' })
   description: string;
 

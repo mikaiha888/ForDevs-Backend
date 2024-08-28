@@ -9,6 +9,8 @@ import { SubscriptionService } from 'src/modules/subscription/subscription.servi
 import { PlanService } from 'src/modules/plan/plan.service';
 import { UserService } from 'src/modules/user/user.service';
 import { Plan } from 'src/modules/plan/entities/plan.entity';
+import { promises } from 'dns';
+import { Subscription } from 'src/modules/subscription/entities/subscription.entity';
 
 dotenv.config();
 
@@ -63,30 +65,26 @@ export class MercadoPagoService {
     }
   }
 
-  public async paymentNotification(payment: any): Promise<string> {
+  public async paymentNotification(payment: any): Promise<Subscription | string> {
     try {
+      let subscription:Subscription;
       if (payment.type === 'payment' && payment.data.status === 'approved') {
         const user = await this.userRepository.findOne(
           payment.data.external_reference,
         );
-        const premiumPlan = await this.planRepository.findOne('Premium');
 
         if (!user) {
           throw new NotFoundException('User not found');
         }
 
-        if (!premiumPlan) {
-          throw new NotFoundException('Premium plan not found');
-        }
         if (payment.data.metadata?.isSubscription) {
-          const subscription = await this.subscriptionService.create({
+          subscription = await this.subscriptionService.create({
             id: payment.data.id,
             user,
-            plan: premiumPlan,
+            status: payment.data.status,
           });
 
-
-          return 'User updated to Premium with subscription';
+          return subscription;
         } else {
           return 'Payment successful';
         }

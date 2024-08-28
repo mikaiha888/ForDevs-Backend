@@ -15,6 +15,9 @@ export class Payment extends ProductPaymentCommon {
   @Column({ nullable: false })
   status: 'succeeded' | 'failed' | 'pending';
 
+  @Column({ nullable: false, type: 'float' })
+  commission: number;
+
   @ManyToOne(() => User, (user) => user.payments, { nullable: false })
   user: User;
 
