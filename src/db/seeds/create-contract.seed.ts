@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
-import { Contract } from 'src/modules/contract/entities/contract.entity';
+import { Contract } from 'src/modules/utility/contract/entities/contract.entity';
 
 export default class CreateContracts implements Seeder {
   public async run(

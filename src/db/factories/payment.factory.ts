@@ -1,8 +1,8 @@
 import { faker } from '@faker-js/faker';
-import { Payment } from 'src/modules/payment/entities/payment.entity';
+import { Payment } from 'src/modules/core/payment/entities/payment.entity';
 import dataSource from '../data-source';
-import { User } from 'src/modules/user/entities/user.entity';
-import { Product } from 'src/modules/product/entities/product.entity';
+import { User } from 'src/modules/core/user/entities/user.entity';
+import { Product } from 'src/modules/core/product/entities/product.entity';
 
 const paymentFactory = async () => {
   const payment = new Payment();

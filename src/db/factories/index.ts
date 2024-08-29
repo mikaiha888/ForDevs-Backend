@@ -1,16 +1,16 @@
 import { setSeederFactory } from 'typeorm-extension';
-import { User } from 'src/modules/user/entities/user.entity';
-import { Project } from 'src/modules/project/entities/project.entity';
-import { Tag } from 'src/modules/tag/entities/tag.entity';
-import { Technology } from 'src/modules/technology/entities/technology.entity';
-import { Review } from 'src/modules/review/entities/review.entity';
-import { Plan } from 'src/modules/plan/entities/plan.entity';
-import { Role } from 'src/modules/role/entities/role.entity';
-import { Like } from 'src/modules/like/entities/like.entity';
-import { Link } from 'src/modules/link/entities/link.entity';
-import { Contract } from 'src/modules/contract/entities/contract.entity';
-import { Payment } from 'src/modules/payment/entities/payment.entity';
-import { Product } from 'src/modules/product/entities/product.entity';
+import { User } from 'src/modules/core/user/entities/user.entity';
+import { Project } from 'src/modules/auxiliary/project/entities/project.entity';
+import { Tag } from 'src/modules/utility/tag/entities/tag.entity';
+import { Technology } from 'src/modules/auxiliary/technology/entities/technology.entity';
+import { Review } from 'src/modules/auxiliary/review/entities/review.entity';
+import { Plan } from 'src/modules/core/plan/entities/plan.entity';
+import { Role } from 'src/modules/auxiliary/role/entities/role.entity';
+import { Like } from 'src/modules/utility/like/entities/like.entity';
+import { Link } from 'src/modules/utility/link/entities/link.entity';
+import { Contract } from 'src/modules/utility/contract/entities/contract.entity';
+import { Payment } from 'src/modules/core/payment/entities/payment.entity';
+import { Product } from 'src/modules/core/product/entities/product.entity';
 
 import projectFactory from './project.factory';
 import userFactory from './user.factory';

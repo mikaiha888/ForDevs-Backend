@@ -1,8 +1,8 @@
 import { DataSource } from 'typeorm';
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
-import { Product } from 'src/modules/product/entities/product.entity';
-import { Plan } from 'src/modules/plan/entities/plan.entity';
-import { Contract } from 'src/modules/contract/entities/contract.entity';
+import { Product } from 'src/modules/core/product/entities/product.entity';
+import { Plan } from 'src/modules/core/plan/entities/plan.entity';
+import { Contract } from 'src/modules/utility/contract/entities/contract.entity';
 import { faker } from '@faker-js/faker';
 
 export default class CreateProducts implements Seeder {

@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
-import { Link } from '../../modules/link/entities/link.entity';
+import { Link } from '../../modules/utility/link/entities/link.entity';
 
 export default class CreateLinks implements Seeder {
   public async run(

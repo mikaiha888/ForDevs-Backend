@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
-import { Like } from '../../modules/like/entities/like.entity';
+import { Like } from '../../modules/utility/like/entities/like.entity';
 
 export default class CreateLikes implements Seeder {
   public async run(

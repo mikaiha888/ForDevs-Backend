@@ -1,5 +1,5 @@
-import { Contract } from 'src/modules/contract/entities/contract.entity';
-import { User } from 'src/modules/user/entities/user.entity';
+import { Contract } from 'src/modules/utility/contract/entities/contract.entity';
+import { User } from 'src/modules/core/user/entities/user.entity';
 import { faker } from '@faker-js/faker';
 import dataSource from '../data-source';
 

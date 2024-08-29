@@ -1,7 +1,7 @@
-import { User } from 'src/modules/user/entities/user.entity';
+import { User } from 'src/modules/core/user/entities/user.entity';
 import { faker } from '@faker-js/faker';
-import { Plan } from 'src/modules/plan/entities/plan.entity';
-import { Role } from 'src/modules/role/entities/role.entity';
+import { Plan } from 'src/modules/core/plan/entities/plan.entity';
+import { Role } from 'src/modules/auxiliary/role/entities/role.entity';
 import { In } from 'typeorm';
 import { hash } from 'bcrypt';
 import dataSource from '../data-source';
