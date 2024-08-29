@@ -15,7 +15,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('ForDevs App')
     .setDescription(
-      'Collaborative platform for programmers to share projects, engage in discussions, and enhance their skills through community interactions and valuable resources.',
+      'Collaborative platform for programmers to share projects, engage in discussions, and enhance their skills through community interactions and valuable resources',
     )
     .setVersion('1.0')
     .build();
