@@ -1,6 +1,6 @@
-import { Like } from 'src/modules/like/entities/like.entity';
-import { User } from 'src/modules/user/entities/user.entity';
-import { Project } from 'src/modules/project/entities/project.entity';
+import { Like } from 'src/modules/utility/like/entities/like.entity';
+import { User } from 'src/modules/core/user/entities/user.entity';
+import { Project } from 'src/modules/auxiliary/project/entities/project.entity';
 import dataSource from '../data-source';
 
 

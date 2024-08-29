@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
-import { Tag } from '../../modules/tag/entities/tag.entity';
+import { Tag } from '../../modules/utility/tag/entities/tag.entity';
 
 export default class CreateTags implements Seeder {
   public async run(

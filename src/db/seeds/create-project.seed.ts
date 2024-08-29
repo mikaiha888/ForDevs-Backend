@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
-import { Project } from '../../modules/project/entities/project.entity';
+import { Project } from '../../modules/auxiliary/project/entities/project.entity';
 
 export default class CreateProjects implements Seeder {
   public async run(

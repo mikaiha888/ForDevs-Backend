@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
-import { Technology } from '../../modules/technology/entities/technology.entity';
+import { Technology } from '../../modules/auxiliary/technology/entities/technology.entity';
 
 export default class CreateTechnologies implements Seeder {
   public async run(

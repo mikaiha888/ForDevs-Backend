@@ -1,8 +1,8 @@
 import { faker } from '@faker-js/faker';
-import { User } from 'src/modules/user/entities/user.entity';
-import { Project } from '../../modules/project/entities/project.entity';
-import { Tag } from '../../modules/tag/entities/tag.entity';
-import { Technology } from '../../modules/technology/entities/technology.entity';
+import { User } from 'src/modules/core/user/entities/user.entity';
+import { Project } from '../../modules/auxiliary/project/entities/project.entity';
+import { Tag } from '../../modules/utility/tag/entities/tag.entity';
+import { Technology } from '../../modules/auxiliary/technology/entities/technology.entity';
 import dataSource from '../data-source';
 
 const projectFactory = async () => {

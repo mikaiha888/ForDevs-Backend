@@ -1,5 +1,5 @@
-import { Review } from 'src/modules/review/entities/review.entity';
-import { User } from 'src/modules/user/entities/user.entity';
+import { Review } from 'src/modules/auxiliary/review/entities/review.entity';
+import { User } from 'src/modules/core/user/entities/user.entity';
 import { faker } from '@faker-js/faker';
 import dataSource from '../data-source';
 

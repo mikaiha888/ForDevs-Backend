@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
-import { Review } from '../../modules/review/entities/review.entity';
+import { Review } from '../../modules/auxiliary/review/entities/review.entity';
 
 export default class CreateReviews implements Seeder {
     public async run(

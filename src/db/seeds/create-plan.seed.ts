@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
-import { Plan } from '../../modules/plan/entities/plan.entity';
+import { Plan } from '../../modules/core/plan/entities/plan.entity';
 
 export default class CreatePlans implements Seeder {
   public async run(
