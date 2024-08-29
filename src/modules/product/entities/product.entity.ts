@@ -6,13 +6,10 @@ import { Entity, Column, OneToMany, OneToOne, JoinColumn } from 'typeorm';
 
 @Entity()
 export class Product extends ProductPaymentCommon {
-  @Column({ primary: true, generated: true })
-  id: string;
-
   @Column({ nullable: false, type: 'text' })
   description: string;
 
-  @Column({ nullable: false, type: 'text' })
+  @Column({ nullable: false, type: 'text', unique: true })
   type: 'plan' | 'contract';
 
   @OneToOne(() => Plan, (plan) => plan.product, { eager: true })
