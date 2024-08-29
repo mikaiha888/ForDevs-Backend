@@ -9,12 +9,12 @@ import {
 
 export type Name = 'User' | 'Admin'
 
-@Entity('roles')
+@Entity()
 export class Role {
   @PrimaryColumn({ default: 'User' })
   name: Name;
 
-  @OneToMany(() => User, (user) => user.plan)
+  @OneToMany(() => User, (user) => user.role)
   users: User[];
 
   @CreateDateColumn()

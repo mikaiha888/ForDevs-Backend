@@ -1,29 +1,32 @@
+import { ProductPaymentCommon } from 'src/modules/common/entities/product-payment-common.entity';
+import { Product } from 'src/modules/product/entities/product.entity';
 import { User } from 'src/modules/user/entities/user.entity';
 import {
-  Entity,
-  PrimaryColumn,
   Column,
-  CreateDateColumn,
-  UpdateDateColumn,
+  Entity,
+  JoinColumn,
   OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 
 export type Name = 'Free' | 'Premium';
 
-@Entity('plans')
+@Entity()
 export class Plan {
-  @PrimaryColumn({ default: 'Free' })
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+  
+  @Column({ nullable: false, unique: true, default: 'Free' })
   name: Name;
 
-  @Column('float', { nullable: false, default: 0.0 })
-  price: number;
+  @Column('text', { array: true, nullable: true })
+  features: string[];
+
+  @OneToOne(() => Product, (product) => product.plan, )
+  @JoinColumn ({name: 'productId', referencedColumnName: 'id'})
+  product: Product;
 
   @OneToMany(() => User, (user) => user.plan)
   users: User[];
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 }

@@ -11,7 +11,7 @@ export default class CreateContracts implements Seeder {
     const contractFactory = factoryManager.get(Contract);
 
     if (!contractFactory) {
-      console.error('Contract or Commission factory not found');
+      console.error('Contract factory not found');
       return;
     }
 

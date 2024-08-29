@@ -1,11 +1,11 @@
 import { Review } from 'src/modules/review/entities/review.entity';
 import { User } from 'src/modules/user/entities/user.entity';
 import { faker } from '@faker-js/faker';
-import datasource from '../data-source';
+import dataSource from '../data-source';
 
 const reviewFactory = async () => {
-  const userRepository = datasource.getRepository(User);
-  const reviewRepository = datasource.getRepository(Review);
+  const userRepository = dataSource.getRepository(User);
+  const reviewRepository = dataSource.getRepository(Review);
 
   const users = await userRepository.find();
 

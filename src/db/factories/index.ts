@@ -9,7 +9,8 @@ import { Role } from 'src/modules/role/entities/role.entity';
 import { Like } from 'src/modules/like/entities/like.entity';
 import { Link } from 'src/modules/link/entities/link.entity';
 import { Contract } from 'src/modules/contract/entities/contract.entity';
-import { Commission } from 'src/modules/commission/entities/commission.entity';
+import { Payment } from 'src/modules/payment/entities/payment.entity';
+import { Product } from 'src/modules/product/entities/product.entity';
 
 import projectFactory from './project.factory';
 import userFactory from './user.factory';
@@ -21,7 +22,8 @@ import roleFactory from './role.factory';
 import likeFactory from './like.factory';
 import linkFactory from './link.factory';
 import contractFactory from './contracts.factory';
-import commissionFactory from './commission.factory';
+// import paymentFactory from './payment.factory';
+import productFactory from './product.factory';
 
 
 export const registerFactories = () => {
@@ -34,6 +36,7 @@ export const registerFactories = () => {
   setSeederFactory(Role, roleFactory);
   setSeederFactory(Like, likeFactory);
   setSeederFactory(Link, linkFactory);
-  setSeederFactory(Contract, contractFactory)
-  setSeederFactory(Commission, commissionFactory)
+  setSeederFactory(Contract, contractFactory);
+  // setSeederFactory(Payment, paymentFactory);
+  setSeederFactory(Product, productFactory);
 };

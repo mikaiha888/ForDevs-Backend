@@ -26,12 +26,7 @@ const contractFactory = async () => {
       remainingUsers[Math.floor(Math.random() * remainingUsers.length)];
 
       contract = new Contract();
-      contract.subject = faker.lorem.words(3);
-      contract.projectDescription = faker.lorem.paragraph();
-      contract.budget = parseFloat(
-        faker.finance.amount({ min: 100, max: 10000, dec: 2 }),
-      );
-      contract.currency = faker.helpers.arrayElement(['ARS', 'USD', 'EUR']);
+      contract.title = faker.lorem.words(3);
       contract.availableTime = faker.date.future().toISOString();
       contract.status = faker.helpers.arrayElement([
         'rejected',

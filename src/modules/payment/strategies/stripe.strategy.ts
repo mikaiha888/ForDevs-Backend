@@ -14,35 +14,59 @@ export class StripeService {
 
   constructor(
     @InjectRepository(User)
-  private readonly userRepository: Repository<User>,
-  @InjectRepository(Plan)
-  private readonly planRepository: Repository<Plan>,) {
+    private readonly userRepository: Repository<User>,
+    @InjectRepository(Plan)
+    private readonly planRepository: Repository<Plan>,
+  ) {
     this.stripeClient = new Stripe(process.env.STRIPE_SECRET_KEY);
   }
 
-  async createSession(title: string, quantity: number, unit_price: number) {
+  async createSession(productData: any) {
     const session = await this.stripeClient.checkout.sessions.create({
       line_items: [{
         price_data: {
-          product_data: { name: title },
+          product_data: { name: productData.title },
           currency: 'ARS',
-          unit_amount: unit_price * 100,
+          unit_amount: productData.unit_price * 100,
         },
-        quantity,
+        quantity: productData.quantity || 1,
       }],
       mode: 'payment',
-      success_url:'https://github.com/',
-      cancel_url:'https://github.com/',
+      success_url: 'https://github.com/',
+      cancel_url: 'https://github.com/',
     });
 
     return { url: session.url, sessionId: session.id };
   }
 
-  async paymentNotification(sessionId: string, userId: string, email: string) {
+  async createSubscription(customerId: string, priceId: string) {
+    const subscription = await this.stripeClient.subscriptions.create({
+      customer: customerId,
+      items: [{ price: priceId }],
+    });
+
+    return subscription;
+  }
+
+  async cancelSubscription(subscriptionId: string) {
+    try {
+      const subscription = await this.stripeClient.subscriptions.update(subscriptionId, {
+        cancel_at_period_end: true,
+      });
+
+      return subscription;
+    } catch (error) {
+      console.error('Error cancelling subscription:', error);
+      throw new Error('Failed to cancel subscription');
+    }
+  }
+
+  async paymentNotification(sessionId: string) {
     try {
       const session = await this.stripeClient.checkout.sessions.retrieve(sessionId);
 
       if (session.payment_status === 'paid') {
+        const userId = session.client_reference_id; // Assuming client_reference_id is used to identify user
         const user = await this.userRepository.findOneBy({ id: userId });
         if (!user) {
           throw new Error('User not found');
@@ -53,7 +77,6 @@ export class StripeService {
           throw new Error('Premium plan not found');
         }
 
-        user.plan = premiumPlan;
         await this.userRepository.save(user);
 
         return 'User plan updated to Premium';

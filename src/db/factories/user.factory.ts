@@ -33,7 +33,6 @@ const userFactory = async () => {
   user.aboutMe = faker.lorem.paragraph();
   user.image = faker.image.avatar();
   user.coverImage = faker.image.url();
-  user.plan = faker.helpers.arrayElement(plans);
   user.role = faker.helpers.arrayElement(roles);
 
   return user;
