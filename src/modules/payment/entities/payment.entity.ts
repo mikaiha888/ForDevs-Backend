@@ -5,6 +5,7 @@ import {
   Entity,
   Column,
   ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 
 @Entity()
@@ -22,5 +23,6 @@ export class Payment extends ProductPaymentCommon {
   user: User;
 
   @ManyToOne(() => Product, (product) => product.payments, { nullable: false })
+  @JoinColumn({ name: 'productType', referencedColumnName: 'type' })
   product: Product;
 }

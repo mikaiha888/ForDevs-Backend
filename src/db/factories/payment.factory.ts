@@ -27,9 +27,9 @@ const paymentFactory = async () => {
   if (payment.product?.contract) {
     const contract = payment.product.contract;
     if (contract.receiver.plan.name === 'Premium') {
-      payment.commission = (contract.amount * 5) / 100;
+      payment.commission = (contract.product.amount * 5) / 100;
     } else {
-      payment.commission = (contract.amount * 25) / 100;
+      payment.commission = (contract.product.amount * 25) / 100;
     }
   } else {
     payment.commission = 0;

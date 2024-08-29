@@ -7,18 +7,18 @@ import {
   JoinColumn,
   OneToMany,
   OneToOne,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 
 export type Name = 'Free' | 'Premium';
 
 @Entity()
-export class Plan extends ProductPaymentCommon {
+export class Plan {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
   
   @Column({ nullable: false, unique: true, default: 'Free' })
   name: Name;
-
-  @Column({ nullable: false, type: 'text' })
-  description: string;
 
   @Column('text', { array: true, nullable: true })
   features: string[];
@@ -29,5 +29,4 @@ export class Plan extends ProductPaymentCommon {
 
   @OneToMany(() => User, (user) => user.plan)
   users: User[];
-
 }

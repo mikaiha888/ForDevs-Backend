@@ -13,7 +13,7 @@ import CreateRolesSeeder from './create-role.seed';
 import CreateLikesSeeder from './create-likes.seed';
 import CreateLinksSeeder from './create-link.seed';
 import CreateContractsSeeder from './create-contract.seed';
-import CreatePaymentSeeder from './create-payment.seed';
+// import CreatePaymentSeeder from './create-payment.seed';
 import CreateProductsSeeder from './create-product.seed';
 
 class MainSeeder implements Seeder {
@@ -32,7 +32,7 @@ class MainSeeder implements Seeder {
     await new CreateLinksSeeder().run(dataSource, factoryManager);
     await new CreateContractsSeeder().run(dataSource, factoryManager);
     await new CreateProductsSeeder().run(dataSource,factoryManager);
-    await new CreatePaymentSeeder().run(dataSource, factoryManager);
+    // await new CreatePaymentSeeder().run(dataSource, factoryManager);
   }
 }
 

@@ -22,7 +22,7 @@ import roleFactory from './role.factory';
 import likeFactory from './like.factory';
 import linkFactory from './link.factory';
 import contractFactory from './contracts.factory';
-import paymentFactory from './payment.factory';
+// import paymentFactory from './payment.factory';
 import productFactory from './product.factory';
 
 
@@ -37,6 +37,6 @@ export const registerFactories = () => {
   setSeederFactory(Like, likeFactory);
   setSeederFactory(Link, linkFactory);
   setSeederFactory(Contract, contractFactory);
-  setSeederFactory(Payment, paymentFactory);
+  // setSeederFactory(Payment, paymentFactory);
   setSeederFactory(Product, productFactory);
 };
