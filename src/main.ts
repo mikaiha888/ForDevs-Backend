@@ -13,16 +13,15 @@ async function bootstrap() {
   );
 
   const config = new DocumentBuilder()
-    .setTitle('ForDevs App')
-    .setDescription(
-      'Collaborative platform for programmers to share projects, engage in discussions, and enhance their skills through community interactions and valuable resources.',
-    )
+    .setTitle('Cats example')
+    .setDescription('The cats API description')
     .setVersion('1.0')
+    .addTag('cats')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  app.enableCors({});
+  app.enableCors({})
 
   await app.listen(3000);
 }
