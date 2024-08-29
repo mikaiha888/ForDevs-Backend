@@ -1,5 +1,5 @@
-import { Link } from 'src/modules/link/entities/link.entity';
-import { User } from 'src/modules/user/entities/user.entity';
+import { Link } from 'src/modules/utility/link/entities/link.entity';
+import { User } from 'src/modules/core/user/entities/user.entity';
 import dataSource from '../data-source';
 import { faker } from '@faker-js/faker';
 

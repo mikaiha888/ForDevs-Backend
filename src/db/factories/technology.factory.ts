@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { Technology } from '../../modules/technology/entities/technology.entity';
+import { Technology } from '../../modules/auxiliary/technology/entities/technology.entity';
 
 const technologyFactory = () => {
   const technology = new Technology();
