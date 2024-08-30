@@ -48,8 +48,10 @@ export class User {
   @Column({ nullable: true })
   coverImage: string;
 
-  @OneToOne(() => Subscription, (subscription) => subscription.user, {eager: true})
-  @JoinColumn ({name: 'subscriptionId', referencedColumnName: 'id'})
+  @OneToOne(() => Subscription, (subscription) => subscription.user, {
+    eager: true,
+  })
+  @JoinColumn({ name: 'subscriptionId', referencedColumnName: 'id' })
   subscription: Subscription;
 
   @ManyToOne(() => Role, (role) => role.users, { eager: true })
@@ -68,7 +70,7 @@ export class User {
   @OneToMany(() => Link, (link) => link.user, { eager: true })
   links: Link[];
 
-  @OneToMany(() => Payment, (payment) => payment.user)
+  @OneToMany(() => Payment, (payment) => payment.user, { eager: true })
   payments: Payment[];
 
   @ManyToOne(() => Plan, (plan) => plan.users, { eager: true })

@@ -34,6 +34,7 @@ const userFactory = async () => {
   user.image = faker.image.avatar();
   user.coverImage = faker.image.url();
   user.role = faker.helpers.arrayElement(roles);
+  user.plan = faker.helpers.arrayElement(plans);
 
   return user;
 };
