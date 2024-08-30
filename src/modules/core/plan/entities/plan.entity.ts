@@ -1,12 +1,8 @@
-import { ProductPaymentCommon } from 'src/modules/common/entities/product-payment-common.entity';
-import { Product } from 'src/modules/core/product/entities/product.entity';
 import { User } from 'src/modules/core/user/entities/user.entity';
 import {
   Column,
   Entity,
-  JoinColumn,
   OneToMany,
-  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -23,9 +19,8 @@ export class Plan {
   @Column('text', { array: true, nullable: true })
   features: string[];
 
-  @OneToOne(() => Product, (product) => product.plan, )
-  @JoinColumn ({name: 'productId', referencedColumnName: 'id'})
-  product: Product;
+  @Column({ nullable: false, type: 'text' })
+  description: string;
 
   @OneToMany(() => User, (user) => user.plan)
   users: User[];

@@ -2,16 +2,15 @@ import {
   Entity,
   JoinColumn,
   OneToOne,
-  PrimaryColumn,
   Column,
+  OneToMany,
 } from 'typeorm';
 import { User } from '../../user/entities/user.entity';
+import { Payment } from '../../payment/entities/payment.entity';
+import { ProductPaymentCommon } from 'src/modules/common/entities/product-payment-common.entity';
 
 @Entity()
-export class Subscription {
-  @PrimaryColumn()
-  id: string;
-
+export class Subscription extends ProductPaymentCommon {
   @OneToOne(() => User, { nullable: false })
   @JoinColumn({ name: 'userId' })
   user: User;
@@ -24,4 +23,7 @@ export class Subscription {
 
   @Column({ nullable: true, default: null })
   endDate: Date;
+
+  @OneToMany(() => Payment, (payment) => payment.product)
+  payments: Payment[];
 }

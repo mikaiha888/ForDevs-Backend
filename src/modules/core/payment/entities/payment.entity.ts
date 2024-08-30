@@ -7,6 +7,7 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
+import { Subscription } from '../../subscription/entities/subscription.entity';
 
 @Entity()
 export class Payment extends ProductPaymentCommon {
@@ -22,7 +23,11 @@ export class Payment extends ProductPaymentCommon {
   @ManyToOne(() => User, (user) => user.payments, { nullable: false })
   user: User;
 
-  @ManyToOne(() => Product, (product) => product.payments, { nullable: false })
-  @JoinColumn({ name: 'productType', referencedColumnName: 'type' })
+  @ManyToOne(() => Product, (product) => product.payments)
   product: Product;
+
+  @ManyToOne(() => Subscription, (subscription) => subscription.payments)
+  subscription: Subscription;
+
+
 }

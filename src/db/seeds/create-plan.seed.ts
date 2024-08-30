@@ -18,7 +18,12 @@ export default class CreatePlans implements Seeder {
 
     const freePlan = await planFactory.make({
       name: 'Free',
-      features: ['Acceso a funcionalidades básicas', 'Hasta 5 proyectos', 'Soporte comunitario']
+      features: [
+        'Acceso a funcionalidades básicas',
+        'Hasta 5 proyectos',
+        'Soporte comunitario',
+      ],
+      description: 'Plan gratuito con acceso limitado.',
     });
     const premiumPlan = await planFactory.make({
       name: 'Premium',
@@ -27,8 +32,10 @@ export default class CreatePlans implements Seeder {
         'Proyectos ilimitados',
         'Soporte prioritario',
         'Acceso a recursos exclusivos',
-        'Capacitación personalizada'
-      ]
+        'Capacitación personalizada',
+      ],
+      description:
+        'Plan premium con acceso completo a todas las funcionalidades.',
     });
 
     await dataSource.getRepository(Plan).save([freePlan, premiumPlan]);
