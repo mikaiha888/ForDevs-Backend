@@ -39,16 +39,20 @@ export default class CreatePayments implements Seeder {
     }
 
     for (const product of products) {
+      const contract = product.contract;
+      const receiver = contract?.receiver;
+      const plan = receiver?.plan;
+
+      const commission = plan
+        ? (product.amount * (plan.name === 'Free' ? 25 : 5)) / 100
+        : 0;
+
       const payment = await paymentFactory.make();
       payment.product = product;
       payment.subscription = null;
       payment.amount = product.amount;
       payment.currency = product.currency;
-      payment.commission = product.contract.receiver.plan
-        ? (product.amount *
-            (product.contract.receiver.plan.name === 'Free' ? 25 : 5)) /
-          100
-        : 0;
+      payment.commission = commission;
 
       await dataSource.getRepository(Payment).save(payment);
     }
